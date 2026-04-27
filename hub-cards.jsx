@@ -9,10 +9,59 @@ function toHref(url) {
   return encodeURI(url);
 }
 
-function CourseCard({ course, index }) {
+const CHANGELOG_STEPS = [
+  { key: "demanda", label: "Historico de Demanda" },
+  { key: "reunioes", label: "Reunioes" },
+  { key: "atualizacoes", label: "Atualizacoes" },
+  { key: "aprovacao", label: "Aprovacao Final" },
+];
+
+function ChangelogModal({ course, onClose }) {
+  React.useEffect(() => {
+    const onKeyDown = (event) => {
+      if (event.key === "Escape") onClose();
+    };
+    window.addEventListener("keydown", onKeyDown);
+    return () => window.removeEventListener("keydown", onKeyDown);
+  }, [onClose]);
+
+  const changelog = course.changelog || {};
+  return (
+    <div className="changelog-overlay" role="dialog" aria-modal="true" aria-label={`Changelog ${course.title}`} onClick={onClose}>
+      <div className="changelog-modal" onClick={(e) => e.stopPropagation()}>
+        <div className="changelog-head">
+          <div>
+            <p className="changelog-kicker">Historico do Produto</p>
+            <h3>{course.title}</h3>
+          </div>
+          <button type="button" className="icon-btn" onClick={onClose} aria-label="Fechar changelog">X</button>
+        </div>
+
+        <div className="changelog-grid">
+          {CHANGELOG_STEPS.map((step) => {
+            const items = Array.isArray(changelog[step.key]) ? changelog[step.key] : [];
+            return (
+              <section className="changelog-step" key={step.key}>
+                <h4>{step.label}</h4>
+                {items.length ? (
+                  <ul>
+                    {items.map((item, idx) => <li key={`${step.key}-${idx}`}>{item}</li>)}
+                  </ul>
+                ) : (
+                  <p className="changelog-empty">Sem registros ainda.</p>
+                )}
+              </section>
+            );
+          })}
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function CourseCard({ course, index, onOpenChangelog }) {
   const hasAccess = Boolean(course.accessUrl);
   const hasReport = Boolean(course.reportUrl);
-  const hasChangelog = Boolean(course.changelogUrl);
   return (
     <article className="course-card" style={{ "--card-pop": course.accent, animationDelay: `${index * 70}ms` }}>
       <div className="course-cover">
@@ -49,15 +98,9 @@ function CourseCard({ course, index }) {
               <IconReport />
             </button>
           )}
-          {hasChangelog ? (
-            <a className="btn btn-ghost" href={course.changelogUrl} target="_blank" rel="noreferrer" title="Changelog">
-              <IconChangelog />
-            </a>
-          ) : (
-            <button className="btn btn-disabled" type="button" data-tooltip="Changelog em breve" aria-label="Changelog em breve">
-              <IconChangelog />
-            </button>
-          )}
+          <button className="btn btn-ghost" type="button" title="Changelog" onClick={() => onOpenChangelog(course)}>
+            <IconChangelog />
+          </button>
         </div>
       </div>
     </article>
@@ -67,17 +110,21 @@ function CourseCard({ course, index }) {
 function CatalogSection({ courses }) {
   const [query, setQuery] = React.useState("");
   const categories = React.useMemo(() => ["Todos", ...new Set(courses.map((c) => c.category))], [courses]);
+  const statuses = React.useMemo(() => ["Todos status", ...new Set(courses.map((c) => c.status).filter(Boolean))], [courses]);
   const [activeCategory, setActiveCategory] = React.useState("Todos");
+  const [activeStatus, setActiveStatus] = React.useState("Todos status");
+  const [activeChangelogCourse, setActiveChangelogCourse] = React.useState(null);
 
   const filtered = React.useMemo(() => {
     const q = normalizeForSearch(query.trim());
     return courses.filter((course) => {
       const matchesCategory = activeCategory === "Todos" || course.category === activeCategory;
-      if (!q) return matchesCategory;
+      const matchesStatus = activeStatus === "Todos status" || course.status === activeStatus;
+      if (!q) return matchesCategory && matchesStatus;
       const hay = normalizeForSearch(`${course.title} ${course.description} ${course.category} ${course.status || ""}`);
-      return matchesCategory && hay.includes(q);
+      return matchesCategory && matchesStatus && hay.includes(q);
     });
-  }, [courses, query, activeCategory]);
+  }, [courses, query, activeCategory, activeStatus]);
 
   return (
     <>
@@ -88,7 +135,7 @@ function CatalogSection({ courses }) {
             <input
               type="search"
               value={query}
-              placeholder="Buscar curso, tema ou categoria..."
+              placeholder="Buscar curso, tema, categoria ou status..."
               onChange={(e) => setQuery(e.target.value)}
             />
             <kbd>Ctrl + K</kbd>
@@ -104,6 +151,21 @@ function CatalogSection({ courses }) {
                 {category}
                 <span className="count">
                   {category === "Todos" ? courses.length : courses.filter((c) => c.category === category).length}
+                </span>
+              </button>
+            ))}
+          </div>
+          <div className="tags">
+            {statuses.map((status) => (
+              <button
+                key={status}
+                type="button"
+                className={`tag ${activeStatus === status ? "active" : ""}`}
+                onClick={() => setActiveStatus(status)}
+              >
+                {status}
+                <span className="count">
+                  {status === "Todos status" ? courses.length : courses.filter((c) => c.status === status).length}
                 </span>
               </button>
             ))}
@@ -126,12 +188,15 @@ function CatalogSection({ courses }) {
           ) : (
             <div className="grid">
               {filtered.map((course, index) => (
-                <CourseCard key={course.id} course={course} index={index} />
+                <CourseCard key={course.id} course={course} index={index} onOpenChangelog={setActiveChangelogCourse} />
               ))}
             </div>
           )}
         </div>
       </section>
+      {activeChangelogCourse ? (
+        <ChangelogModal course={activeChangelogCourse} onClose={() => setActiveChangelogCourse(null)} />
+      ) : null}
     </>
   );
 }

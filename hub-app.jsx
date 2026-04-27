@@ -27,6 +27,9 @@ function App() {
             </div>
           </div>
           <div className="topbar-actions">
+            <a className="feedback-link" href="contato.html">
+              Enviar feedback
+            </a>
             <button
               className="icon-btn"
               type="button"
@@ -54,6 +57,7 @@ function App() {
               Contato: Felipe Correa Bitencourt (<a href="mailto:felipe.cb2511@gmail.com">felipe.cb2511@gmail.com</a>) e
               {" "}Eduarda Tessari Pereira (<a href="mailto:dudatessari@gmail.com">dudatessari@gmail.com</a>)
             </p>
+            <p><a className="footer-feedback-link" href="contato.html">Formulario de feedback do contratante</a></p>
           </div>
           <div className="footer-meta">Atualizado em Abril 2026</div>
         </div>

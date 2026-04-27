@@ -212,6 +212,24 @@ button { font-family: inherit; cursor: pointer; }
 }
 .icon-btn:hover { border-color: var(--ink); background: var(--bg-soft); }
 
+.feedback-link {
+  height: 38px;
+  padding: 0 14px;
+  border-radius: 10px;
+  border: 1px solid var(--line);
+  background: var(--bg-elev);
+  color: var(--ink);
+  display: inline-flex;
+  align-items: center;
+  font-size: 13px;
+  font-weight: 600;
+  transition: 120ms;
+}
+.feedback-link:hover {
+  border-color: var(--ink);
+  background: var(--bg-soft);
+}
+
 /* ============================================
    HERO
    ============================================ */
@@ -756,7 +774,7 @@ button { font-family: inherit; cursor: pointer; }
   border-color: color-mix(in srgb, #14AE5C 40%, var(--line));
   color: #0D6C39;
 }
-.status-atualizacoes {
+.status-revisao {
   background: color-mix(in srgb, #F59E0B 18%, var(--bg-elev));
   border-color: color-mix(in srgb, #F59E0B 35%, var(--line));
   color: #9A5A00;
@@ -859,6 +877,84 @@ button { font-family: inherit; cursor: pointer; }
   pointer-events: none;
 }
 
+/* ============================================
+   CHANGELOG MODAL
+   ============================================ */
+.changelog-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(10, 10, 10, 0.5);
+  backdrop-filter: blur(4px);
+  z-index: 80;
+  display: grid;
+  place-items: center;
+  padding: 20px;
+}
+.changelog-modal {
+  width: min(980px, 100%);
+  max-height: min(86vh, 860px);
+  overflow: auto;
+  background: var(--bg-elev);
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  box-shadow: var(--shadow-lg);
+  padding: 24px;
+}
+.changelog-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 16px;
+  margin-bottom: 18px;
+}
+.changelog-kicker {
+  margin: 0 0 4px;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--ink-3);
+}
+.changelog-head h3 {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: 32px;
+  line-height: 1;
+  letter-spacing: -0.02em;
+}
+.changelog-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+}
+.changelog-step {
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  padding: 14px;
+  background: var(--bg-soft);
+}
+.changelog-step h4 {
+  margin: 0 0 10px;
+  font-size: 14px;
+  letter-spacing: -0.01em;
+}
+.changelog-step ul {
+  margin: 0;
+  padding-left: 18px;
+  display: grid;
+  gap: 6px;
+}
+.changelog-step li {
+  font-size: 14px;
+  color: var(--ink-2);
+}
+.changelog-empty {
+  margin: 0;
+  font-size: 13px;
+  color: var(--ink-3);
+  font-style: italic;
+}
+
 /* preview hover — barra colorida superior */
 .course-card::before {
   content: "";
@@ -902,6 +998,9 @@ button { font-family: inherit; cursor: pointer; }
   text-decoration: underline;
   text-underline-offset: 2px;
 }
+.footer-feedback-link {
+  font-weight: 600;
+}
 .footer-meta {
   font-family: var(--font-mono);
   font-size: 11px;
@@ -931,6 +1030,11 @@ button { font-family: inherit; cursor: pointer; }
    ============================================ */
 @media (prefers-reduced-motion: reduce) {
   * { animation: none !important; transition: none !important; }
+}
+
+@media (max-width: 720px) {
+  .changelog-grid { grid-template-columns: 1fr; }
+  .changelog-head h3 { font-size: 26px; }
 }
 
 /* Tweaks panel sits above everything */

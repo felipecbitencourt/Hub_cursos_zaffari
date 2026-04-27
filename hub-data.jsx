@@ -9,7 +9,13 @@ const COURSES = [
     reportUrl: "relatórios/Relatório Técnico-Pedagógico - Aprender Português (1).html",
     changelogUrl: "",
     accent: "var(--pop-emerald)",
-    status: "Atualizacoes",
+    status: "Revisao",
+    changelog: {
+      demanda: ["Demanda levantada pela area de treinamento para trilha de idiomas."],
+      reunioes: ["Reuniao inicial para definicao de escopo e publico-alvo."],
+      atualizacoes: ["Ajuste de conteudos e revisao de atividades praticas."],
+      aprovacao: ["Aprovado para ciclo atual."],
+    },
   },
   {
     id: "hub-traducoes",
@@ -21,7 +27,13 @@ const COURSES = [
     reportUrl: "relatórios/Relatório Técnico-Pedagógico - Hub de Traduções (1).html",
     changelogUrl: "",
     accent: "var(--pop-tomato)",
-    status: "Atualizacoes",
+    status: "Revisao",
+    changelog: {
+      demanda: ["Solicitacao para centralizar traducoes em um unico ponto."],
+      reunioes: ["Alinhamento com equipe de conteudo e operacao."],
+      atualizacoes: ["Inclusao de novos recursos de traducao."],
+      aprovacao: ["Aprovado com monitoramento continuo."],
+    },
   },
   {
     id: "nr17",
@@ -34,6 +46,12 @@ const COURSES = [
     changelogUrl: "",
     accent: "var(--pop-navy)",
     status: "Entregue",
+    changelog: {
+      demanda: ["Necessidade de reforco ergonomico e conformidade operacional."],
+      reunioes: ["Reunioes com liderancas para validacao da trilha NR-17."],
+      atualizacoes: ["Conteudo revisado para linguagem mais objetiva."],
+      aprovacao: ["Entrega final aprovada."],
+    },
   },
   {
     id: "olhar-critico",
@@ -45,7 +63,13 @@ const COURSES = [
     reportUrl: "relatórios/Relatório_FatoOuFake.html",
     changelogUrl: "",
     accent: "var(--pop-cherry)",
-    status: "Atualizacoes",
+    status: "Revisao",
+    changelog: {
+      demanda: ["Solicitacao para reforcar pensamento critico em informacoes digitais."],
+      reunioes: ["Discussao de abordagem com equipe pedagogica."],
+      atualizacoes: ["Atualizacao de cenarios e exemplos práticos."],
+      aprovacao: ["Aprovado para rodada de atualizacao."],
+    },
   },
   {
     id: "sac",
@@ -58,6 +82,12 @@ const COURSES = [
     changelogUrl: "",
     accent: "var(--pop-coral)",
     status: "Entregue",
+    changelog: {
+      demanda: ["Demanda de qualificacao para atendimento em SAC."],
+      reunioes: ["Reunioes com operacao para mapear jornada de atendimento."],
+      atualizacoes: ["Ajuste final de roteiro e checkpoints de qualidade."],
+      aprovacao: ["Aprovacao final concluida."],
+    },
   },
   {
     id: "promotores",
@@ -69,7 +99,13 @@ const COURSES = [
     reportUrl: "relatórios/Relatório_Promotores.html",
     changelogUrl: "",
     accent: "var(--pop-ink)",
-    status: "Atualizacoes",
+    status: "Revisao",
+    changelog: {
+      demanda: ["Reforco dos padroes operacionais para promotores."],
+      reunioes: ["Alinhamento com lideranca de campo."],
+      atualizacoes: ["Conteudo atualizado com novas diretrizes."],
+      aprovacao: ["Aprovado para versao atual."],
+    },
   },
   {
     id: "contas-a-pagar",
@@ -82,6 +118,12 @@ const COURSES = [
     changelogUrl: "",
     accent: "var(--brand)",
     status: "Desenvolvimento",
+    changelog: {
+      demanda: ["Demanda mapeada para trilha financeira."],
+      reunioes: ["Reuniao de kickoff pendente."],
+      atualizacoes: [],
+      aprovacao: [],
+    },
   },
   {
     id: "canais-comunicacao",
@@ -94,6 +136,12 @@ const COURSES = [
     changelogUrl: "",
     accent: "var(--pop-coral)",
     status: "Entregue",
+    changelog: {
+      demanda: ["Demanda para padronizar canais de comunicacao com cliente."],
+      reunioes: ["Reunioes de alinhamento com SAC."],
+      atualizacoes: ["Fluxos revisados e consolidados."],
+      aprovacao: ["Aprovacao final registrada."],
+    },
   },
 ];
 
