@@ -1,0 +1,899 @@
+<!DOCTYPE html>
+<!-- saved from url=(0204)file:///C:/Users/FELIPE%20BITENCOURT/AppData/Local/Packages/5319275A.WhatsAppDesktop_cv1g1gvanyjgm/LocalState/sessions/030A9F276DC9F9B1C007F066227134CD196FE95E/transfers/2026-17/relatorio-aprender-pt.html -->
+<html lang="pt-BR"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Relatório Técnico-Pedagógico - Aprender Português</title>
+    <style>
+        /* Reset e configurações base */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* Configurações de impressão */
+        @media print {
+            @page {
+                margin: 15mm;
+                size: A4;
+            }
+
+            .page-break {
+                page-break-before: always;
+            }
+
+            body {
+                font-size: 11pt;
+                line-height: 1.4;
+            }
+
+            .color-bar {
+                -webkit-print-color-adjust: exact;
+                print-color-adjust: exact;
+            }
+
+            a {
+                color: #000;
+                text-decoration: none;
+            }
+
+            .page-number::after {
+                content: "Página " counter(page);
+                position: absolute;
+                bottom: 10mm;
+                right: 15mm;
+                font-size: 10pt;
+                color: #666;
+            }
+        }
+
+        /* Estilos principais */
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: #fff;
+            max-width: 210mm;
+            margin: 0 auto;
+            padding: 15mm;
+            position: relative;
+            counter-reset: page;
+        }
+
+        /* Barra de cor lateral */
+        .color-bar {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 6mm;
+            height: 100%;
+            background: #2C3E50;
+            z-index: 1;
+        }
+
+        /* Cabeçalho do documento */
+        .document-header {
+            position: relative;
+            z-index: 2;
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 2px solid #e0e0e0;
+        }
+
+        .client-identification {
+            color: #666;
+            font-size: 11pt;
+            font-weight: 600;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            margin-bottom: 5px;
+        }
+
+        .report-title {
+            color: #2C3E50;
+            font-size: 24pt;
+            font-weight: 700;
+            margin-bottom: 8px;
+            line-height: 1.2;
+        }
+
+        .course-title {
+            color: #3498DB;
+            font-size: 16pt;
+            font-weight: 600;
+            margin-bottom: 20px;
+        }
+
+        /* Metadados do documento */
+        .document-metadata {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+            margin-top: 20px;
+            padding: 15px;
+            background: #f8f9fa;
+            border-left: 4px solid #3498DB;
+            border-radius: 4px;
+        }
+
+        .metadata-item {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .metadata-label {
+            font-size: 9pt;
+            color: #666;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 4px;
+            font-weight: 600;
+        }
+
+        .metadata-value {
+            font-size: 11pt;
+            color: #333;
+            font-weight: 500;
+        }
+
+        /* Títulos e seções */
+        h1 {
+            font-size: 18pt;
+            font-weight: 600;
+            color: #2C3E50;
+            margin: 30px 0 15px 0;
+            padding-bottom: 8px;
+            border-bottom: 2px solid #e0e0e0;
+            position: relative;
+        }
+
+        h1::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: -2px;
+            width: 50px;
+            height: 2px;
+            background: #3498DB;
+        }
+
+        h2 {
+            font-size: 14pt;
+            font-weight: 600;
+            color: #444;
+            margin: 25px 0 12px 0;
+        }
+
+        h3 {
+            font-size: 12pt;
+            font-weight: 600;
+            color: #555;
+            margin: 20px 0 10px 0;
+        }
+
+        h4 {
+            font-size: 11pt;
+            font-weight: 600;
+            color: #666;
+            margin: 18px 0 8px 0;
+        }
+
+        /* Parágrafos e texto */
+        p {
+            margin-bottom: 12px;
+            text-align: justify;
+            font-size: 11pt;
+        }
+
+        /* Listas */
+        ul,
+        ol {
+            margin: 0 0 15px 25px;
+        }
+
+        li {
+            margin-bottom: 6px;
+            font-size: 11pt;
+        }
+
+        /* Tabelas profissionais */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0 20px 0;
+            font-size: 10pt;
+            border: 1px solid #ddd;
+        }
+
+        thead {
+            background: #3498DB;
+        }
+
+        th {
+            color: white;
+            padding: 12px 15px;
+            text-align: left;
+            font-weight: 600;
+            font-size: 10pt;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            border-right: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        th:last-child {
+            border-right: none;
+        }
+
+        td {
+            padding: 10px 15px;
+            border-bottom: 1px solid #eee;
+            vertical-align: top;
+        }
+
+        tr:last-child td {
+            border-bottom: none;
+        }
+
+        tr:nth-child(even) {
+            background: #fafafa;
+        }
+
+        /* Estrutura de arquivos */
+        .file-structure {
+            background: #f8f9fa;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            padding: 15px;
+            margin: 15px 0;
+            font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
+            font-size: 10pt;
+            line-height: 1.6;
+        }
+
+        .directory {
+            color: #2C3E50;
+            font-weight: 600;
+            display: inline-block;
+            margin-right: 5px;
+        }
+
+        .file {
+            color: #333;
+        }
+
+        .comment {
+            color: #666;
+            font-style: italic;
+        }
+
+        .indent {
+            margin-left: 20px;
+        }
+
+        .indent-2 {
+            margin-left: 40px;
+        }
+
+        .indent-3 {
+            margin-left: 60px;
+        }
+
+        /* Indicadores e tags */
+        .indicator {
+            display: inline-block;
+            padding: 3px 8px;
+            background: #f0f0f0;
+            border-radius: 3px;
+            font-size: 9pt;
+            font-weight: 600;
+            color: #666;
+            margin-right: 5px;
+            vertical-align: middle;
+        }
+
+        .indicator-blue {
+            background: #3498DB;
+            color: white;
+        }
+
+        .indicator-dark {
+            background: #2C3E50;
+            color: white;
+        }
+
+        /* Especificações técnicas */
+        .specification-box {
+            background: #f8f9fa;
+            border-left: 4px solid #3498DB;
+            padding: 15px;
+            margin: 15px 0;
+        }
+
+        .specification-title {
+            font-size: 11pt;
+            font-weight: 600;
+            color: #3498DB;
+            margin-bottom: 10px;
+        }
+
+        /* Configurações da Grid */
+        .config-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 15px;
+            margin: 20px 0;
+        }
+
+        .config-item {
+            background: white;
+            border: 1px solid #e0e0e0;
+            border-radius: 4px;
+            padding: 15px;
+        }
+
+        .config-title {
+            font-size: 11pt;
+            font-weight: 600;
+            color: #2C3E50;
+            margin-bottom: 8px;
+            padding-bottom: 5px;
+            border-bottom: 1px solid #f0f0f0;
+        }
+
+        .config-desc {
+            font-size: 10pt;
+            color: #666;
+            line-height: 1.5;
+        }
+
+        .text-bold {
+            font-weight: 600;
+        }
+
+        /* Responsividade para impressão */
+        @media screen and (max-width: 768px) {
+            body {
+                padding: 10mm;
+            }
+
+            .document-metadata {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Barra lateral de identidade -->
+    <div class="color-bar"></div>
+
+    <!-- Número da página (visível apenas na impressão) -->
+    <div class="page-number"></div>
+
+    <!-- Cabeçalho do documento -->
+    <div class="document-header">
+        <div class="client-identification">DOCUMENTAÇÃO TÉCNICA E PEDAGÓGICA</div>
+        <h1 class="report-title">Relatório Técnico-Pedagógico</h1>
+        <div class="course-title">Projeto: Aprender Português · Grupo Zaffari</div>
+
+        <div class="document-metadata">
+            <div class="metadata-item">
+                <span class="metadata-label">Formato</span>
+                <span class="metadata-value"><span class="indicator indicator-blue">SCORM 1.2</span></span>
+            </div>
+            <div class="metadata-item">
+                <span class="metadata-label">Público-alvo</span>
+                <span class="metadata-value">Colaboradores estrangeiros do Grupo Zaffari</span>
+            </div>
+            <div class="metadata-item">
+                <span class="metadata-label">Estrutura</span>
+                <span class="metadata-value">~63 MB (62 arquivos)</span>
+            </div>
+            <div class="metadata-item">
+                <span class="metadata-label">Idiomas suportados</span>
+                <span class="metadata-value">PT, ES (internacionalização i18n)</span>
+            </div>
+            <div class="metadata-item">
+                <span class="metadata-label">Abordagem</span>
+                <span class="metadata-value">Curadoria de Recursos Externos + Contexto Cultural</span>
+            </div>
+            <div class="metadata-item">
+                <span class="metadata-label">Páginas Dinâmicas</span>
+                <span class="metadata-value">13 Páginas de Conteúdo</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Objetivo do Projeto -->
+    <div class="specification-box">
+        <div class="specification-title">Objetivo do Projeto</div>
+        <p style="margin-bottom: 0;">Oferecer um ambiente digital estruturado, acolhedor e autoexplicativo que reúna cursos, materiais e recursos gratuitos para colaboradores estrangeiros do Grupo Zaffari aprenderem português brasileiro de forma prática e acessível. O projeto combina uma curadoria pedagógica de plataformas externas com conteúdo cultural sobre a lusofonia e o Brasil, promovendo integração linguística e senso de pertencimento no ambiente corporativo.</p>
+    </div>
+
+    <!-- Seção 1: Arquitetura Pedagógica -->
+    <h1>1. Arquitetura Pedagógica</h1>
+
+    <p>O curso "Aprender Português" foi projetado como um ecossistema de aprendizagem que combina curadoria de recursos externos com conteúdo cultural original. Em vez de produzir lições internas do zero, o projeto seleciona, organiza e contextualiza plataformas e materiais gratuitos já existentes, entregando ao colaborador um percurso de aprendizado claro e progressivo.</p>
+
+    <h2>1.1. Fundamentos Instrucionais</h2>
+
+    <p><span class="text-bold">Curadoria Pedagógica Estruturada:</span> O ambiente vai além de uma simples lista de links. Cada recurso selecionado possui uma página de detalhes com descrição aprofundada, vídeos demonstrativos, organização por seções e links diretos de acesso.</p>
+    <ul>
+        <li><span class="text-bold">Progressão por Níveis:</span> Os recursos são categorizados em três níveis (Iniciante, Intermediário e Avançado), permitindo ao colaborador identificar rapidamente o que é adequado ao seu estágio de aprendizado.</li>
+        <li><span class="text-bold">Andragogia e Autonomia:</span> Respeita a bagagem do adulto corporativo, oferecendo múltiplos caminhos de aprendizado. O colaborador escolhe o formato (app, vídeo, livro, podcast, etc.) e o objetivo (primeiros passos, vocabulário, gramática, pronúncia, trabalho, cultura) que melhor se adapta à sua realidade.</li>
+        <li><span class="text-bold">Contextualização Cultural:</span> A seção "Lusofonia" situa o colaborador antes de iniciar o estudo, oferecendo contexto sobre a língua portuguesa, suas variações regionais no Brasil e no mundo, reduzindo estranheza e facilitando a imersão.</li>
+    </ul>
+
+    <h2>1.2. Metodologias e Estratégias</h2>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Estratégia</th>
+                <th>Aplicação no Curso</th>
+                <th>Benefício Pedagógico</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><span class="text-bold">Curadoria Ativa</span></td>
+                <td>8 recursos externos selecionados, cada um com página de detalhes dedicada contendo análise, seções temáticas e vídeos.</td>
+                <td>Elimina a sobrecarga de escolha; o colaborador confia na seleção feita pela equipe pedagógica.</td>
+            </tr>
+            <tr>
+                <td><span class="text-bold">Multimodalidade</span></td>
+                <td>Recursos em formatos variados: apps gamificados, vídeos, livros digitais, plataformas interativas, repositórios de áudio/PDF, podcasts, MOOCs e exercícios.</td>
+                <td>Atende diferentes preferências de aprendizado e estilos cognitivos.</td>
+            </tr>
+            <tr>
+                <td><span class="text-bold">Filtragem Multidimensional</span></td>
+                <td>Barra de pesquisa por nome + filtros por nível, formato e objetivo, com estado sincronizado via URL.</td>
+                <td>Reduz o tempo de busca; o colaborador encontra o recurso certo em segundos.</td>
+            </tr>
+            <tr>
+                <td><span class="text-bold">Imersão Cultural</span></td>
+                <td>Página de Lusofonia com mapas interativos (Plotly.js), flashcards de perguntas frequentes e dados sobre sotaques regionais.</td>
+                <td>Reduz estranheza inicial e constrói repertório cultural antes do estudo formal.</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <div class="page-break"></div>
+
+    <h2>1.3. Estrutura de Conteúdo e Trilhas</h2>
+
+    <p>O curso se organiza em três grandes eixos que funcionam de forma complementar:</p>
+
+    <div class="config-grid" style="margin-top: 15px; margin-bottom: 25px;">
+        <div class="config-item">
+            <div class="config-title">Página Inicial (Home)</div>
+            <p class="config-desc">Apresentação do curso com hero visual e mascote animado, seção "Aprender com propósito, no seu ritmo" com cards informativos (Por que importa, Como aprendemos, O que este curso oferece), teaser da Lusofonia, destaque cultural sobre o Brasil e atalhos rápidos para o catálogo (Primeiros passos, Para o trabalho, Pronúncia).</p>
+        </div>
+        <div class="config-item">
+            <div class="config-title">Lusofonia (Contexto Cultural)</div>
+            <p class="config-desc">Contextualização completa: introdução à variante brasileira, mapa interativo do Brasil com sotaques por região (5 regiões, estados e população), mapa-múndi dos países lusófonos (10 países, 4 continentes), flashcards de perguntas frequentes para iniciantes, curiosidades e CTA para o catálogo.</p>
+        </div>
+        <div class="config-item">
+            <div class="config-title">Catálogo de Recursos</div>
+            <p class="config-desc">Página de catálogo com sistema de busca textual e filtros multidimensionais (nível, formato, objetivo). Cada recurso possui um card visual com tag, descrição, focos de aprendizado e links de ação (ver detalhes / acessar). Inclui contador dinâmico de resultados e estado vazio amigável.</p>
+        </div>
+    </div>
+
+    <h3>Catálogo de Recursos Curados (8 Recursos)</h3>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Recurso</th>
+                <th>Nível</th>
+                <th>Formato</th>
+                <th>Focos</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><span class="text-bold">Duolingo</span></td>
+                <td>Iniciante</td>
+                <td>App</td>
+                <td>Primeiros passos, Vocabulário</td>
+            </tr>
+            <tr>
+                <td><span class="text-bold">Mini Curso de Português (Sonia Rodríguez Mella)</span></td>
+                <td>Iniciante</td>
+                <td>Vídeo</td>
+                <td>Primeiros passos, Gramática</td>
+            </tr>
+            <tr>
+                <td><span class="text-bold">Português para Principiantes (UW-Madison)</span></td>
+                <td>Iniciante</td>
+                <td>Livro digital</td>
+                <td>Primeiros passos, Gramática, Cultura</td>
+            </tr>
+            <tr>
+                <td><span class="text-bold">Lingo Hut</span></td>
+                <td>Iniciante</td>
+                <td>Plataforma interativa</td>
+                <td>Vocabulário, Primeiros passos</td>
+            </tr>
+            <tr>
+                <td><span class="text-bold">LiveLingua: Portuguese Courses</span></td>
+                <td>Intermediário</td>
+                <td>Repositório de Áudio/PDFs</td>
+                <td>Pronúncia, Gramática, Vocabulário</td>
+            </tr>
+            <tr>
+                <td><span class="text-bold">Podcast: Tá Falado (UT Austin)</span></td>
+                <td>Intermediário</td>
+                <td>Podcast</td>
+                <td>Pronúncia, Gramática</td>
+            </tr>
+            <tr>
+                <td><span class="text-bold">Pluralidades em Português Brasileiro (Coursera/UNICAMP)</span></td>
+                <td>Avançado</td>
+                <td>MOOC</td>
+                <td>Cultura, Gramática</td>
+            </tr>
+            <tr>
+                <td><span class="text-bold">Oficina de Língua Portuguesa: Gramática (Bradesco)</span></td>
+                <td>Avançado</td>
+                <td>Exercícios e teoria</td>
+                <td>Trabalho, Gramática</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <p>Cada recurso acima possui uma <span class="text-bold">página de detalhes dedicada</span> contendo: título, introdução contextualizada, seções temáticas organizadas (estrutura do material, dinâmica de exercícios, destaques), vídeo demonstrativo (quando aplicável) e botão de acesso externo direto.</p>
+
+    <div class="page-break"></div>
+
+    <h2>1.4. Sistema de Busca e Filtragem do Catálogo</h2>
+
+    <p>O catálogo implementa um sistema de filtragem avançado, renderizado dinamicamente via JavaScript, que permite ao colaborador localizar recursos de forma instantânea através de múltiplas dimensões simultâneas:</p>
+
+    <div class="config-grid">
+        <div class="config-item">
+            <div class="config-title">Barra de Pesquisa Textual</div>
+            <p class="config-desc">Campo de busca com evento <code>input</code> em tempo real que filtra os recursos pelo nome. A filtragem é instantânea (sem necessidade de pressionar Enter), proporcionando feedback visual imediato ao colaborador.</p>
+        </div>
+        <div class="config-item">
+            <div class="config-title">Filtros por Chips (Nível)</div>
+            <p class="config-desc">Três opções mutuamente inclusivas: <strong>Iniciante</strong>, <strong>Intermediário</strong> e <strong>Avançado</strong>. Múltiplos chips podem ser ativados simultaneamente para combinar níveis.</p>
+        </div>
+        <div class="config-item">
+            <div class="config-title">Filtros por Chips (Formato)</div>
+            <p class="config-desc">Oito categorias de formato: App, Vídeo, Livro digital, Plataforma interativa, Áudio e PDFs, Podcast, Curso online (MOOC) e Exercícios e teoria.</p>
+        </div>
+        <div class="config-item">
+            <div class="config-title">Filtros por Chips (Objetivo)</div>
+            <p class="config-desc">Seis focos de aprendizado: Primeiros passos, Vocabulário, Gramática, Pronúncia, Trabalho e Cultura/Interculturalidade.</p>
+        </div>
+    </div>
+
+
+    <div class="page-break"></div>
+
+    <!-- Seção 2: Design e Interface -->
+    <h1>2. Design e Interface do Usuário</h1>
+
+    <p>A identidade visual do curso prioriza acolhimento e clareza. A interface foi desenhada para públicos de diferentes origens linguísticas, combinando elementos visuais intuitivos, tipografia neutra de alta legibilidade e animações sutis que transmitem vitalidade sem comprometer a usabilidade.</p>
+
+    <h2>2.1. Identidade Visual e Experiência</h2>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Elemento</th>
+                <th>Especificação Analítica</th>
+                <th>Justificativa Funcional</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><span class="text-bold">Padrão Cromático</span></td>
+                <td>Design system via CSS custom properties (tokens.css): escala de cinzas, verde institucional (#27ae60), azul (#3498DB) e variações tonais por recurso (mata, coral, oceano, amethyst, areia, noite, cerrado, rubi).</td>
+                <td>Cada recurso do catálogo possui uma identidade tonal própria, facilitando a diferenciação visual sem poluir a interface.</td>
+            </tr>
+            <tr>
+                <td><span class="text-bold">Hero com Mascote Animado</span></td>
+                <td>Mascote Zaffari centralizado com bubbles flutuantes ("Olá", "Hello", "Hola") e efeito glow pulsante.</td>
+                <td>Cria sensação imediata de acolhimento multicultural no primeiro contato visual.</td>
+            </tr>
+            <tr>
+                <td><span class="text-bold">Layout Mosaic (Catálogo)</span></td>
+                <td>Cards em variantes visuais: hero, portrait, landscape, tile, stripe — cada recurso com um layout distinto definido em <code>resources.json</code>.</td>
+                <td>Quebra a monotonia visual de grids homogêneas; o mosaico estimula a exploração do catálogo.</td>
+            </tr>
+            <tr>
+                <td><span class="text-bold">Tags Categorizadoras</span></td>
+                <td>Etiquetas visuais em cada card indicando formato e custo (ex: "App · Gratuito", "Podcast com Transcrições · Gratuito").</td>
+                <td>Reduz tempo de leitura e orienta decisão imediata sobre o tipo de recurso.</td>
+            </tr>
+            <tr>
+                <td><span class="text-bold">Ícones SVG por Formato</span></td>
+                <td>Ícones vetoriais diferenciados para cada tipo de recurso (app, vídeo, livro, interativo, áudio, podcast, MOOC, exercícios).</td>
+                <td>Reforço visual que complementa as tags e facilita identificação rápida em varredura visual.</td>
+            </tr>
+            <tr>
+                <td><span class="text-bold">Mapas Interativos (Plotly.js)</span></td>
+                <td>Dois mapas: Brasil por regiões (scattergeo com markers coloridos) e mapa-múndi lusófono (choropleth + scatter). Hover com dados de estados e população.</td>
+                <td>Transforma dados culturais em experiência visual interativa, aumentando engajamento e retenção.</td>
+            </tr>
+            <tr>
+                <td><span class="text-bold">Flashcards Interativos</span></td>
+                <td>Componente de flashcard com animação flip 3D (pergunta/resposta), navegação por setas e contador de progresso.</td>
+                <td>Gamifica o aprendizado cultural; o formato de "carta virada" instiga a curiosidade.</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <h2>2.2. Recursos de Acessibilidade <span class="indicator indicator-blue" style="background:#34495e; color: #fff;">A implementar</span></h2>
+
+    <div class="config-grid">
+        <div class="config-item">
+            <div class="config-title">Internacionalização (i18n)</div>
+            <p class="config-desc">Sistema de tradução dinâmica via dicionários JSON (pt.json e es.json). A alternância de idioma é instantânea via painel de acessibilidade e persiste entre sessões via PreferencesStore. Infraestrutura preparada para 5 idiomas: PT, ES, HT, FR, EN.</p>
+        </div>
+        <div class="config-item">
+            <div class="config-title">Adaptação Visual</div>
+            <p class="config-desc">Painel de acessibilidade com ferramentas de conforto visual:</p>
+            <ul style="margin: 5px 0 0 15px; font-size: 10pt; color: #666;">
+                <li><strong>Modo Escuro:</strong> Inversão de contraste para ambientes de baixa luminosidade.</li>
+                <li><strong>Escala de Cinza:</strong> Remove saturação cromática para reduzir estímulo visual.</li>
+                <li><strong>Alto Contraste:</strong> Aumenta a diferenciação entre elementos para maior legibilidade.</li>
+                <li><strong>Regulação de Fonte:</strong> Ajuste granular do tamanho do texto (80% a 140%, em passos de 10%).</li>
+            </ul>
+        </div>
+        <div class="config-item">
+            <div class="config-title">Fontes Assistivas</div>
+            <p class="config-desc">Dois modos de fonte especializados ativados via painel:</p>
+            <ul style="margin: 5px 0 0 15px; font-size: 10pt; color: #666;">
+                <li><strong>Modo Dislexia:</strong> Fonte OpenDyslexic para facilitar a leitura de pessoas com dislexia.</li>
+                <li><strong>Modo TDAH (Leitura Biônica):</strong> Aplica negrito parcial nas palavras (40% inicial) para guiar a fixação ocular e acelerar a leitura.</li>
+            </ul>
+        </div>
+        <div class="config-item">
+            <div class="config-title">VLibras Integrado</div>
+            <p class="config-desc">Widget de tradução automática para Língua Brasileira de Sinais (Libras), garantindo acessibilidade para pessoas surdas ou com deficiência auditiva.</p>
+        </div>
+        <div class="config-item">
+            <div class="config-title">Leitura de Página</div>
+            <p class="config-desc">Funcionalidade de leitura em voz alta do conteúdo da página com configurações de voz, velocidade e volume (infraestrutura preparada para implementação futura).</p>
+        </div>
+    </div>
+
+    <div class="page-break"></div>
+
+    <h2>2.3. Responsividade e Adaptação de Telas</h2>
+
+    <p>Toda a interface foi arquitetada com princípios de <em>Mobile-First</em> e design reativo, garantindo acesso em desktops, notebooks, tablets e smartphones sem perda funcional ou de conteúdo.</p>
+
+    <div class="config-grid">
+        <div class="config-item">
+            <div class="config-title">Layout Fluido (Flex &amp; Grid)</div>
+            <p class="config-desc">Uso extensivo de CSS Flexbox e Grid em todas as páginas. Os cards do catálogo, seções da home e grids da lusofonia se reorganizam automaticamente de acordo com o viewport, evitando rolagem horizontal ou quebra de elementos.</p>
+        </div>
+        <div class="config-item">
+            <div class="config-title">Navegação Tátil (Touch-Friendly)</div>
+            <p class="config-desc">Em dispositivos móveis, o menu principal colapsa em formato hambúrguer, otimizando a altura útil da tela. Alvos de toque seguem diretrizes de acessibilidade (mínimo 48×48px). Cards do catálogo empilham-se verticalmente em telas estreitas.</p>
+        </div>
+        <div class="config-item">
+            <div class="config-title">Elementos Visuais Adaptativos</div>
+            <p class="config-desc">Imagens, mapas interativos, vídeos demonstrativos e flashcards redimensionam-se proporcionalmente ao viewport ativo (<code>max-width: 100%</code>), mantendo peso visual e legibilidade em qualquer tamanho de tela.</p>
+        </div>
+    </div>
+
+    <!-- Seção 3: Arquitetura Técnica -->
+    <h1>3. Arquitetura Computacional</h1>
+
+    <p>O desenvolvimento prioriza desempenho e independência de frameworks pesados. A stack ultraleve garante carregamento instantâneo, estabilidade máxima e total compatibilidade com o ambiente SCORM de aprendizado corporativo (LMS), sem dependências que possam causar atrito na entrega.</p>
+
+    <h2>3.1. Stack Tecnológico Aplicado</h2>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Tecnologia</th>
+                <th>Função / Justificativa do Uso</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><span class="text-bold">Vanilla JavaScript (ES6+)</span></td>
+                <td>Manipulação do DOM, sistema de internacionalização (i18n), motor de filtragem multidimensional do catálogo, componentes de flashcard, painel de acessibilidade e persistência de preferências — tudo sem frameworks terceiros.</td>
+            </tr>
+            <tr>
+                <td><span class="text-bold">Semântica HTML5</span></td>
+                <td>Construção com elementos <code>nav</code>, <code>section</code>, <code>main</code>, <code>article</code>, <code>header</code>, <code>footer</code> para garantir estrutura acessível e suporte de longo prazo nos navegadores corporativos.</td>
+            </tr>
+            <tr>
+                <td><span class="text-bold">Vanilla CSS3 (Design Tokens)</span></td>
+                <td>Uso de CSS custom properties centralizadas em <code>tokens.css</code> (cores, fontes, espaçamentos), com folhas modulares por página (home.css, lusofonia.css, module.css, detail.css, nav.css).</td>
+            </tr>
+            <tr>
+                <td><span class="text-bold">Plotly.js (CDN)</span></td>
+                <td>Biblioteca de visualização de dados utilizada para renderizar mapas interativos (scattergeo e choropleth) na página de Lusofonia, com fallback gracioso caso o carregamento falhe.</td>
+            </tr>
+            <tr>
+                <td><span class="text-bold">JSON como Data Layer</span></td>
+                <td>Os recursos do catálogo são servidos via <code>resources.json</code> e os dicionários de tradução via <code>pt.json</code> e <code>es.json</code>, permitindo adição de novos recursos ou idiomas sem alterar código JavaScript.</td>
+            </tr>
+            <tr>
+                <td><span class="text-bold">SCORM 1.2 Nativo</span></td>
+                <td>Ponte de comunicação LMS via <code>scorm-bridge.js</code>, com manifest XML para exportação encapsulada e compatibilidade universal com plataformas de e-learning corporativas.</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <div class="page-break"></div>
+
+    <h2>3.2. Navegadores Suportados</h2>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Navegador</th>
+                <th>Versão Mínima</th>
+                <th>Status</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><span class="text-bold">Google Chrome</span></td>
+                <td>90+</td>
+                <td><span class="indicator indicator-blue">Totalmente Suportado</span></td>
+            </tr>
+            <tr>
+                <td><span class="text-bold">Mozilla Firefox</span></td>
+                <td>88+</td>
+                <td><span class="indicator indicator-blue">Totalmente Suportado</span></td>
+            </tr>
+            <tr>
+                <td><span class="text-bold">Microsoft Edge</span></td>
+                <td>90+</td>
+                <td><span class="indicator indicator-blue">Totalmente Suportado</span></td>
+            </tr>
+            <tr>
+                <td><span class="text-bold">Safari</span></td>
+                <td>14+</td>
+                <td><span class="indicator indicator-blue">Totalmente Suportado</span></td>
+            </tr>
+        </tbody>
+    </table>
+
+    <h2>3.3. Estrutura de Arquivos</h2>
+
+    <p>O desenvolvimento modular segue separação rigorosa de camadas (marcação, estilos, lógica e dados), facilitando manutenção e escalabilidade:</p>
+
+    <div class="file-structure">
+        <span class="directory">aprender-pt/</span><br>
+        <span class="indent">├── <span class="file">index.html</span> <span class="comment"># Página inicial (Home)</span></span><br>
+        <span class="indent">├── <span class="directory">web/</span> <span class="comment"># Diretório principal do curso</span></span><br>
+        <span class="indent-2">├── <span class="file">lusofonia.html</span> <span class="comment"># Página de contexto cultural</span></span><br>
+        <span class="indent-2">├── <span class="file">recursos.html</span> <span class="comment"># Catálogo com busca e filtros</span></span><br>
+        <span class="indent-2">├── <span class="file">duolingo.html</span> <span class="comment"># Páginas de detalhe</span></span><br>
+        <span class="indent-2">├── <span class="file">sonia.html</span> <span class="comment"># de cada recurso</span></span><br>
+        <span class="indent-2">├── <span class="file">uw-madison.html, lingohut.html...</span> <span class="comment"># (8 páginas de detalhe)</span></span><br>
+        <span class="indent-2">├── <span class="directory">css/</span></span><br>
+        <span class="indent-3">├── <span class="file">tokens.css</span> <span class="comment"># Design tokens (cores, fontes, espaçamentos)</span></span><br>
+        <span class="indent-3">├── <span class="file">nav.css</span> <span class="comment"># Navegação e menu de acessibilidade</span></span><br>
+        <span class="indent-3">├── <span class="file">home.css</span> <span class="comment"># Estilos da página inicial</span></span><br>
+        <span class="indent-3">├── <span class="file">lusofonia.css</span> <span class="comment"># Estilos da página cultural</span></span><br>
+        <span class="indent-3">├── <span class="file">module.css</span> <span class="comment"># Catálogo e sistema de filtros</span></span><br>
+        <span class="indent-3">└── <span class="file">detail.css</span> <span class="comment"># Páginas de detalhe dos recursos</span></span><br>
+        <span class="indent-2">├── <span class="directory">js/</span></span><br>
+        <span class="indent-3">├── <span class="file">i18n.js</span> <span class="comment"># Motor de internacionalização</span></span><br>
+        <span class="indent-3">├── <span class="file">resources-mount.js</span> <span class="comment"># Catálogo, busca e filtros (18 KB)</span></span><br>
+        <span class="indent-3">├── <span class="file">accessibility-boot.js</span> <span class="comment"># Painel de acessibilidade (9.5 KB)</span></span><br>
+        <span class="indent-3">├── <span class="file">detail-mount.js</span> <span class="comment"># Renderizador de páginas de detalhe</span></span><br>
+        <span class="indent-3">├── <span class="file">nav-boot.js</span> <span class="comment"># Navegação e menu mobile</span></span><br>
+        <span class="indent-3">├── <span class="file">preferences-store.js</span> <span class="comment"># Persistência de preferências</span></span><br>
+        <span class="indent-3">├── <span class="file">scorm-bridge.js</span> <span class="comment"># Comunicação LMS</span></span><br>
+        <span class="indent-3">└── <span class="directory">pages/</span> <span class="comment"># Config de cada recurso (8 scripts)</span></span><br>
+        <span class="indent-2">├── <span class="directory">locales/</span></span><br>
+        <span class="indent-3">├── <span class="file">pt.json</span> <span class="comment"># Dicionário Português (~36 KB)</span></span><br>
+        <span class="indent-3">└── <span class="file">es.json</span> <span class="comment"># Dicionário Espanhol (~37 KB)</span></span><br>
+        <span class="indent-2">├── <span class="directory">data/</span></span><br>
+        <span class="indent-3">└── <span class="file">resources.json</span> <span class="comment"># Metadados dos 8 recursos</span></span><br>
+        <span class="indent-2">└── <span class="directory">assets/</span> <span class="comment"># Imagens, vídeos e logos (22 arquivos)</span></span><br>
+        <span class="indent">└── <span class="directory">public/</span></span><br>
+        <span class="indent-2">├── <span class="file">favicon.svg</span></span><br>
+        <span class="indent-2">└── <span class="file">icons.svg</span></span><br>
+    </div>
+
+    <div class="page-break"></div>
+
+    <!-- Seção 4: Métricas -->
+    <h1>4. Métricas do Projeto</h1>
+
+    <h2>4.1. Estatísticas Gerais</h2>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Métrica</th>
+                <th>Valor</th>
+                <th>Análise</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><span class="text-bold">Tamanho Total</span></td>
+                <td>~63 MB</td>
+                <td>Volume predominantemente atrelado a vídeos demonstrativos (WebM) e imagens dos recursos curados</td>
+            </tr>
+            <tr>
+                <td><span class="text-bold">Quantidade de Arquivos</span></td>
+                <td>62</td>
+                <td>Projeto modular contendo apenas a estrutura essencial, sem redundâncias</td>
+            </tr>
+            <tr>
+                <td><span class="text-bold">Maior Arquivo JavaScript</span></td>
+                <td>18.2 KB (resources-mount.js)</td>
+                <td>Script responsável pelo catálogo completo: renderização de cards, sistema de filtros multidimensionais, busca textual e sincronização de estado via URL</td>
+            </tr>
+            <tr>
+                <td><span class="text-bold">Ativos Visuais (Imagens + Vídeo)</span></td>
+                <td>~32 MB (Aprox. 51%)</td>
+                <td>Inclui vídeos demonstrativos em WebM, capturas de tela dos recursos, logos e foto de composição visual</td>
+            </tr>
+            <tr>
+                <td><span class="text-bold">Páginas HTML</span></td>
+                <td>13</td>
+                <td>1 Home + 1 Lusofonia + 1 Catálogo + 8 Detalhes de Recurso + 2 auxiliares</td>
+            </tr>
+            <tr>
+                <td><span class="text-bold">Folhas CSS</span></td>
+                <td>6</td>
+                <td>Arquitetura modular: tokens, nav, home, lusofonia, module (catálogo) e detail</td>
+            </tr>
+            <tr>
+                <td><span class="text-bold">Scripts JavaScript</span></td>
+                <td>15</td>
+                <td>7 módulos core (i18n, catálogo, acessibilidade, detalhe, nav, preferências, SCORM) + 8 configurações de página</td>
+            </tr>
+            <tr>
+                <td><span class="text-bold">Dicionários i18n</span></td>
+                <td>~397 chaves (PT) / equivalente (ES)</td>
+                <td>Cobertura completa de toda a interface, incluindo descrições detalhadas de cada recurso externo</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <!-- Seção 5: Contato -->
+    <h1>5. Contato e Suporte</h1>
+
+    <p>Para dúvidas técnicas, suporte ou futuras atualizações do projeto, contate a equipe de desenvolvimento:</p>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Responsável</th>
+                <th>E-mail</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><span class="text-bold">Felipe Correa Bitencourt</span></td>
+                <td><a href="mailto:felipe.cb2511@gmail.com">felipe.cb2511@gmail.com</a></td>
+            </tr>
+            <tr>
+                <td><span class="text-bold">Eduarda Tessari Pereira</span></td>
+                <td><a href="mailto:dudatessari@gmail.com">dudatessari@gmail.com</a></td>
+            </tr>
+        </tbody>
+    </table>
+
+    <!-- Rodapé do documento -->
+    <div class="document-footer">
+        <div class="footer-info">
+            <span>Grupo Zaffari - Aprender Português</span>
+            <span>Documentação Técnica de Arquitetura</span>
+        </div>
+        <div class="document-id">ID Doc: APRENDER-PT-2026-ENG</div>
+    </div>
+
+
+
+
+</body></html>

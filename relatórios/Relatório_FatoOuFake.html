@@ -1,0 +1,1182 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Relatório Técnico-Pedagógico - Curso Fato ou Fake</title>
+    <style>
+        /* Reset e configurações base */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* Configurações de impressão */
+        @media print {
+            @page {
+                margin: 15mm;
+                size: A4;
+            }
+
+            .page-break {
+                page-break-before: always;
+            }
+
+            body {
+                font-size: 11pt;
+                line-height: 1.4;
+            }
+
+            .color-bar {
+                -webkit-print-color-adjust: exact;
+                print-color-adjust: exact;
+            }
+
+            a {
+                color: #000;
+                text-decoration: none;
+            }
+
+            .page-number::after {
+                content: "Página " counter(page);
+                position: absolute;
+                bottom: 10mm;
+                right: 15mm;
+                font-size: 10pt;
+                color: #666;
+            }
+        }
+
+        /* Estilos principais */
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: #fff;
+            max-width: 210mm;
+            margin: 0 auto;
+            padding: 15mm;
+            position: relative;
+            counter-reset: page;
+        }
+
+        /* Barra de cor lateral */
+        .color-bar {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 6mm;
+            height: 100%;
+            background: linear-gradient(180deg, #4F46E5, #7C3AED);
+            /* Indigo → Violet */
+            z-index: 1;
+        }
+
+        /* Cabeçalho do documento */
+        .document-header {
+            position: relative;
+            z-index: 2;
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 2px solid #e0e0e0;
+        }
+
+        .client-identification {
+            color: #666;
+            font-size: 11pt;
+            font-weight: 600;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            margin-bottom: 5px;
+        }
+
+        .report-title {
+            color: #2C3E50;
+            font-size: 24pt;
+            font-weight: 700;
+            margin-bottom: 8px;
+            line-height: 1.2;
+        }
+
+        .course-title {
+            color: #4F46E5;
+            font-size: 16pt;
+            font-weight: 600;
+            margin-bottom: 20px;
+        }
+
+        /* Metadados do documento */
+        .document-metadata {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+            margin-top: 20px;
+            padding: 15px;
+            background: #f8f9fa;
+            border-left: 4px solid #4F46E5;
+            border-radius: 4px;
+        }
+
+        .metadata-item {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .metadata-label {
+            font-size: 9pt;
+            color: #666;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 4px;
+            font-weight: 600;
+        }
+
+        .metadata-value {
+            font-size: 11pt;
+            color: #333;
+            font-weight: 500;
+        }
+
+        /* Títulos e seções */
+        h1 {
+            font-size: 18pt;
+            font-weight: 600;
+            color: #2C3E50;
+            margin: 30px 0 15px 0;
+            padding-bottom: 8px;
+            border-bottom: 2px solid #e0e0e0;
+            position: relative;
+        }
+
+        h1::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: -2px;
+            width: 50px;
+            height: 2px;
+            background: #4F46E5;
+        }
+
+        h2 {
+            font-size: 14pt;
+            font-weight: 600;
+            color: #444;
+            margin: 25px 0 12px 0;
+        }
+
+        h3 {
+            font-size: 12pt;
+            font-weight: 600;
+            color: #555;
+            margin: 20px 0 10px 0;
+        }
+
+        h4 {
+            font-size: 11pt;
+            font-weight: 600;
+            color: #666;
+            margin: 18px 0 8px 0;
+        }
+
+        /* Parágrafos e texto */
+        p {
+            margin-bottom: 12px;
+            text-align: justify;
+            font-size: 11pt;
+        }
+
+        /* Listas */
+        ul,
+        ol {
+            margin: 0 0 15px 25px;
+        }
+
+        li {
+            margin-bottom: 6px;
+            font-size: 11pt;
+        }
+
+        /* Tabelas profissionais */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0 20px 0;
+            font-size: 10pt;
+            border: 1px solid #ddd;
+        }
+
+        thead {
+            background: #4F46E5;
+        }
+
+        th {
+            color: white;
+            padding: 12px 15px;
+            text-align: left;
+            font-weight: 600;
+            font-size: 10pt;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            border-right: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        th:last-child {
+            border-right: none;
+        }
+
+        td {
+            padding: 10px 15px;
+            border-bottom: 1px solid #eee;
+            vertical-align: top;
+        }
+
+        tr:last-child td {
+            border-bottom: none;
+        }
+
+        tr:nth-child(even) {
+            background: #fafafa;
+        }
+
+        /* Blocos de código e estrutura */
+        .code-block {
+            background: #f5f5f5;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            padding: 15px;
+            margin: 15px 0;
+            font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
+            font-size: 10pt;
+            line-height: 1.4;
+            overflow-x: auto;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+        }
+
+        .directory {
+            color: #2C3E50;
+            font-weight: 600;
+            display: inline-block;
+            margin-right: 5px;
+        }
+
+        .file {
+            color: #333;
+        }
+
+        .comment {
+            color: #666;
+            font-style: italic;
+        }
+
+        .indent {
+            margin-left: 20px;
+        }
+
+        .indent-2 {
+            margin-left: 40px;
+        }
+
+        .indent-3 {
+            margin-left: 60px;
+        }
+
+        /* Estrutura de arquivos */
+        .file-structure {
+            background: #f8f9fa;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            padding: 15px;
+            margin: 15px 0;
+            font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
+            font-size: 10pt;
+            line-height: 1.6;
+        }
+
+        /* Indicadores e tags */
+        .indicator {
+            display: inline-block;
+            padding: 3px 8px;
+            background: #f0f0f0;
+            border-radius: 3px;
+            font-size: 9pt;
+            font-weight: 600;
+            color: #666;
+            margin-right: 5px;
+            vertical-align: middle;
+        }
+
+        .indicator-red {
+            background: #DC3545;
+            color: white;
+        }
+
+        .indicator-blue {
+            background: #4F46E5;
+            color: white;
+        }
+
+        .indicator-green {
+            background: #27AE60;
+            color: white;
+        }
+
+        .indicator-purple {
+            background: #7C3AED;
+            color: white;
+        }
+
+        .indicator-amber {
+            background: #F59E0B;
+            color: white;
+        }
+
+        /* Rodapé do documento */
+        .document-footer {
+            margin-top: 40px;
+            padding-top: 15px;
+            border-top: 1px solid #ddd;
+            text-align: center;
+            font-size: 10pt;
+            color: #666;
+        }
+
+        .footer-info {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 8px;
+        }
+
+        .document-id {
+            font-size: 9pt;
+            color: #999;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        /* Utilitários */
+        .text-bold {
+            font-weight: 600;
+        }
+
+        .text-uppercase {
+            text-transform: uppercase;
+        }
+
+        .color-primary {
+            color: #4F46E5;
+        }
+
+        .mt-20 {
+            margin-top: 20px;
+        }
+
+        .mb-20 {
+            margin-bottom: 20px;
+        }
+
+        .text-center {
+            text-align: center;
+        }
+
+        .text-right {
+            text-align: right;
+        }
+
+        /* Especificações técnicas */
+        .specification-box {
+            background: #f8f9fa;
+            border-left: 4px solid #4F46E5;
+            padding: 15px;
+            margin: 15px 0;
+        }
+
+        .specification-title {
+            font-size: 11pt;
+            font-weight: 600;
+            color: #4F46E5;
+            margin-bottom: 10px;
+        }
+
+        /* Configurações de acessibilidade */
+        .config-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 15px;
+            margin: 20px 0;
+        }
+
+        .config-item {
+            background: white;
+            border: 1px solid #e0e0e0;
+            border-radius: 4px;
+            padding: 15px;
+        }
+
+        .config-title {
+            font-size: 11pt;
+            font-weight: 600;
+            color: #2C3E50;
+            margin-bottom: 8px;
+            padding-bottom: 5px;
+            border-bottom: 1px solid #f0f0f0;
+        }
+
+        .config-desc {
+            font-size: 10pt;
+            color: #666;
+            line-height: 1.5;
+        }
+
+        /* Acessibilidade e conformidade */
+        .compliance-list {
+            margin: 15px 0;
+            padding-left: 20px;
+        }
+
+        .compliance-item {
+            margin-bottom: 8px;
+            position: relative;
+            padding-left: 15px;
+        }
+
+        .compliance-item::before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: #27AE60;
+            font-weight: bold;
+        }
+
+        /* Responsividade para impressão */
+        @media screen and (max-width: 768px) {
+            body {
+                padding: 10mm;
+            }
+
+            .document-metadata {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Barra lateral de identidade -->
+    <div class="color-bar"></div>
+
+    <!-- Número da página (visível apenas na impressão) -->
+    <div class="page-number"></div>
+
+    <!-- Cabeçalho do documento -->
+    <div class="document-header">
+        <div class="client-identification">DOCUMENTAÇÃO TÉCNICA</div>
+        <h1 class="report-title">Relatório Técnico-Pedagógico</h1>
+        <div class="course-title">Curso: "Olhar Crítico — Combate à Desinformação na Era Digital"</div>
+
+        <div class="document-metadata">
+            <div class="metadata-item">
+                <span class="metadata-label">Formato</span>
+                <span class="metadata-value"><span class="indicator indicator-red">SCORM 1.2</span></span>
+            </div>
+            <div class="metadata-item">
+                <span class="metadata-label">Estrutura</span>
+                <span class="metadata-value">~5 MB (100+ arquivos)</span>
+            </div>
+            <div class="metadata-item">
+                <span class="metadata-label">Páginas de Conteúdo</span>
+                <span class="metadata-value">37 páginas em 5 módulos</span>
+            </div>
+            <div class="metadata-item">
+                <span class="metadata-label">Duração estimada</span>
+                <span class="metadata-value">2 horas - 2 horas 30 min</span>
+            </div>
+            <div class="metadata-item">
+                <span class="metadata-label">Idiomas Suportados</span>
+                <span class="metadata-value">PT, EN, FR, ES</span>
+            </div>
+            <div class="metadata-item">
+                <span class="metadata-label">Público-alvo</span>
+                <span class="metadata-value">Público Geral / Educação</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Objetivo do Curso -->
+    <div class="specification-box" style="margin-top: 25px;">
+        <div class="specification-title">Objetivo do Curso</div>
+        <p style="margin-bottom: 0;">Desenvolver habilidades de literacia midiática e pensamento crítico para
+            identificar, analisar e combater a desinformação no ambiente digital. O curso capacita o participante a
+            reconhecer os diferentes tipos de fake news, compreender seus impactos sociais e utilizar ferramentas e
+            métodos de verificação de fatos de forma autônoma.</p>
+    </div>
+
+    <!-- Seção 1: Arquitetura Pedagógica -->
+    <h1>1. Arquitetura Pedagógica</h1>
+
+    <p>O curso "Olhar Crítico" foi desenhado sob uma perspectiva andragógica e investigativa, combinando conteúdo
+        teórico com simulações práticas, focando na efetiva mudança de comportamento informacional e no
+        desenvolvimento do pensamento crítico digital.</p>
+
+    <h2>1.1. Fundamentos Instrucionais</h2>
+
+    <p><span class="text-bold">Taxonomia de Bloom Revisada:</span> O curso estrutura-se para levar o aluno além da
+        memorização:</p>
+    <ul>
+        <li><span class="text-bold">Lembrar:</span> Identificar os tipos e categorias de desinformação.</li>
+        <li><span class="text-bold">Entender:</span> Compreender os mecanismos psicológicos de propagação de fake
+            news e o papel das bolhas informacionais.</li>
+        <li><span class="text-bold">Aplicar:</span> Utilizar o método SIFT e ferramentas de verificação para checar
+            notícias em tempo real.</li>
+        <li><span class="text-bold">Analisar:</span> Dissecar a anatomia de uma fake news, distinguindo elementos de
+            manipulação em textos.</li>
+        <li><span class="text-bold">Avaliar:</span> Julgar a credibilidade de fontes e emitir vereditos fundamentados
+            no jogo Caça-Fakes.</li>
+    </ul>
+
+    <p><span class="text-bold">Andragogia (Modelo de Knowles):</span> O conteúdo respeita a autonomia do adulto:</p>
+    <ul>
+        <li><span class="text-bold">Necessidade de Saber:</span> Cada módulo apresenta casos reais que demonstram o
+            "porquê" de aprender a verificar informações.</li>
+        <li><span class="text-bold">Autoconceito:</span> O participante é tratado como "investigador digital",
+            protagonista ativo da verificação.</li>
+        <li><span class="text-bold">Orientação para Problemas:</span> O foco está em resolver situações reais do
+            cotidiano digital — notícias virais, correntes de WhatsApp, posts de redes sociais.</li>
+    </ul>
+
+    <h2>1.2. Metodologias Ativas</h2>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Metodologia</th>
+                <th>Aplicação no Curso</th>
+                <th>Benefício</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><span class="text-bold">Problem-Based Learning (PBL)</span></td>
+                <td>Casos reais de desinformação (vacinas, clima, terra plana) como ponto de partida</td>
+                <td>Contextualização imediata e relevância social</td>
+            </tr>
+            <tr>
+                <td><span class="text-bold">Gamificação</span></td>
+                <td>Jogo "Caça-Fakes" com ferramentas investigativas, pontuação e fases progressivas</td>
+                <td>Engajamento elevado e aplicação prática</td>
+            </tr>
+            <tr>
+                <td><span class="text-bold">Microlearning</span></td>
+                <td>Conteúdo fragmentado em 37 páginas curtas e objetivas</td>
+                <td>Aumento da retenção e redução da fadiga cognitiva</td>
+            </tr>
+            <tr>
+                <td><span class="text-bold">Active Recall</span></td>
+                <td>Quizzes integrados ao longo dos módulos</td>
+                <td>Consolidação ativa do conhecimento</td>
+            </tr>
+            <tr>
+                <td><span class="text-bold">Scaffolding</span></td>
+                <td>Progressão gradual: conceitos → história → impactos → verificação → prática</td>
+                <td>Construção sólida e sequenciada de competências</td>
+            </tr>
+            <tr>
+                <td><span class="text-bold">Aprendizagem Experiencial</span></td>
+                <td>Simulador de análise de notícias </td>
+                <td>Transferência direta para o cotidiano</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <div class="page-break"></div>
+
+    <h2>1.3. Sistema de Avaliação e Acompanhamento</h2>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Tipo de Avaliação</th>
+                <th>Formato</th>
+                <th>Objetivo</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><span class="text-bold">Formativa</span></td>
+                <td>Quizzes integrados ao final de cada módulo</td>
+                <td>Verificar compreensão imediata dos conceitos</td>
+            </tr>
+            <tr>
+                <td><span class="text-bold">Gamificada</span></td>
+                <td>Jogo Caça-Fakes com classificação, pontuação e feedback detalhado</td>
+                <td>Aplicar conhecimento em cenário simulado</td>
+            </tr>
+            <tr>
+                <td><span class="text-bold">Prática</span></td>
+                <td>Análise de notícias reais com ferramentas de verificação</td>
+                <td>Avaliação de competência investigativa</td>
+            </tr>
+            <tr>
+                <td><span class="text-bold">Reflexiva</span></td>
+                <td>Estudos de caso e perguntas de pensamento crítico</td>
+                <td>Estimular metacognição e posicionamento ético</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <h2>1.4. Estrutura Curricular</h2>
+
+    <p>O curso está organizado em <strong>4 módulos de conteúdo</strong> progressivos, complementados por módulos de
+        prática gamificada e recursos complementares:</p>
+
+    <h3>Módulos de Conteúdo</h3>
+    <ul>
+        <li><strong>Módulo 1 — Conceitos Iniciais:</strong> Definições de desinformação, misinformação e
+            malinformação. Categorias, motivações e teorias conspiratórias.</li>
+        <li><strong>Módulo 2 — Panorama Histórico:</strong> Evolução da desinformação ao longo da história.
+            Estudos de caso: vacinas, mudanças climáticas, terra plana.</li>
+        <li><strong>Módulo 3 — Impactos Reais:</strong> Efeitos da desinformação na saúde pública, ciência,
+            democracia e sociedade. Bolhas de filtro e câmaras de eco.</li>
+        <li><strong>Módulo 4 — Verificação:</strong> Vieses cognitivos, psicologia da desinformação, método SIFT,
+            ferramentas de fact-checking e anatomia de uma fake news.</li>
+    </ul>
+
+    <h3>Módulo Prático — Caça-Fakes</h3>
+    <p>O simulador interativo é a peça central de avaliação prática do curso:</p>
+    <ul>
+        <li><strong>Manchetes:</strong> Análise de 5 manchetes de notícias utilizando Scanner de Gatilhos,
+            Busca de Verificação e Análise de Domínio.</li>
+    </ul>
+
+    <h3>Módulo Extras</h3>
+    <ul>
+        <li><strong>Recursos e Referências:</strong> Indicações de sites, ferramentas e materiais complementares
+            para aprofundamento contínuo.</li>
+    </ul>
+
+    <!-- Seção 2: Design e Interface -->
+    <h1>2. Design e Interface do Usuário</h1>
+
+    <p>O conceito visual "Investigador Digital" guia toda a interface, alinhando-se ao tema de verificação de fatos e
+        pensamento crítico. O design combina modernidade com clareza informacional, utilizando uma paleta sóbria com
+        acentos vibrantes para elementos interativos.</p>
+
+    <h2>2.1. Identidade Visual</h2>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Elemento</th>
+                <th>Especificação</th>
+                <th>Função Psicológica / Semiótica</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><span class="text-bold">Indigo (#4F46E5)</span></td>
+                <td>Cor Primária</td>
+                <td>Inteligência, confiança, profundidade analítica.</td>
+            </tr>
+            <tr>
+                <td><span class="text-bold">Violet (#7C3AED)</span></td>
+                <td>Cor de Destaque</td>
+                <td>Curiosidade, inovação, elementos gamificados.</td>
+            </tr>
+            <tr>
+                <td><span class="text-bold">Rose (#E11D48)</span></td>
+                <td>Cor de Alerta (Fake)</td>
+                <td>Perigo, falsidade, alerta — associada a notícias falsas.</td>
+            </tr>
+            <tr>
+                <td><span class="text-bold">Emerald (#10B981)</span></td>
+                <td>Cor de Sucesso (Real)</td>
+                <td>Verdade, verificação bem-sucedida, feedback positivo.</td>
+            </tr>
+            <tr>
+                <td><span class="text-bold">Amber (#F59E0B)</span></td>
+                <td>Cor de Atenção</td>
+                <td>Cautela, dados parciais, necessidade de verificação.</td>
+            </tr>
+            <tr>
+                <td><span class="text-bold">Tipografia Inter</span></td>
+                <td>Google Fonts (Sans-serif)</td>
+                <td>Alta legibilidade em telas (alto x-height), modernidade.</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <h2>2.2. Arquitetura da Interface</h2>
+
+    <div class="config-grid">
+        <div class="config-item">
+            <div class="config-title">Header com Abas de Módulos</div>
+            <p class="config-desc">Navegação por abas com indicadores de progresso, dropdown para páginas internas e
+                ícones de módulo.</p>
+        </div>
+        <div class="config-item">
+            <div class="config-title">Barra de Configurações</div>
+            <p class="config-desc">Painel de acessibilidade com ajuste de fonte, contraste, leitura automática,
+                efeitos sonoros e seleção de idioma.</p>
+        </div>
+        <div class="config-item">
+            <div class="config-title">Área de Conteúdo Central</div>
+            <p class="config-desc">Carregamento dinâmico via AJAX com transições suaves e scroll automático.</p>
+        </div>
+        <div class="config-item">
+            <div class="config-title">Navegação Inline</div>
+            <p class="config-desc">Botões Anterior/Próximo integrados ao conteúdo com indicação visual de progresso.
+            </p>
+        </div>
+        <div class="config-item">
+            <div class="config-title">Sistema de Componentes</div>
+            <p class="config-desc">Cards, timelines, acordeões, tabelas interativas, modais e tooltips reutilizáveis.
+            </p>
+        </div>
+        <div class="config-item">
+            <div class="config-title">Efeitos Sonoros (Web Audio API)</div>
+            <p class="config-desc">16 efeitos sonoros sintetizados para navegação, quiz e jogo — sem arquivos de áudio
+                externos.</p>
+        </div>
+    </div>
+
+    <h2>2.3. Acessibilidade e Inclusão</h2>
+
+    <p>O projeto foi desenvolvido com base nas diretrizes WCAG 2.1 AA, implementando um conjunto de recursos integrados
+        para facilitar o acesso ao conteúdo.</p>
+
+    <div class="config-grid">
+        <div class="config-item">
+            <div class="config-title">Internacionalização Completa</div>
+            <p class="config-desc">Conteúdo integralmente traduzido para Português, Inglês, Francês e Espanhol. A
+                alternância de idioma é
+                instantânea e persiste entre sessões via localStorage.</p>
+        </div>
+        <div class="config-item">
+            <div class="config-title">Leitura Guiada Avançada</div>
+            <p class="config-desc">Utiliza a Web Speech API para narração automática. Inclui controles de velocidade de
+                leitura (0.75x a 2x) e seleção de voz (masculina/feminina) diretamente nas configurações.</p>
+        </div>
+        <div class="config-item">
+            <div class="config-title">Adaptação Visual</div>
+            <p class="config-desc">Ferramentas de conforto visual incluem:</p>
+            <ul style="margin: 5px 0 0 15px; font-size: 10pt; color: #666;">
+                <li><strong>Alto Contraste:</strong> Modo noturno para reduzir fadiga visual.</li>
+                <li><strong>Regulação de Fonte:</strong> Ajuste granular do tamanho do texto (A- / A+).</li>
+                <li><strong>Modo Dislexia:</strong> Fonte OpenDyslexic para facilitar a leitura.</li>
+            </ul>
+        </div>
+        <div class="config-item">
+            <div class="config-title">VLibras Integrado</div>
+            <p class="config-desc">Widget de tradução automática para Língua Brasileira de Sinais (Libras), garantindo
+                acessibilidade para pessoas surdas ou com deficiência auditiva.</p>
+        </div>
+        <div class="config-item">
+            <div class="config-title">Tutorial Interativo</div>
+            <p class="config-desc">Sistema de Onboarding Guiado que ensina o usuário a navegar pela interface e utilizar
+                os recursos de acessibilidade no primeiro acesso.</p>
+        </div>
+    </div>
+
+    <div class="page-break"></div>
+
+    <!-- Seção 3: Jogo Caça-Fakes -->
+    <h1>3. O Jogo Caça-Fakes</h1>
+
+    <p>O Caça-Fakes é o elemento de avaliação prática mais sofisticado do curso, funcionando como um simulador de
+        investigação de desinformação com mecânicas de jogo.</p>
+
+
+    <table>
+        <thead>
+            <tr>
+                <th>Componente</th>
+                <th>Descrição</th>
+                <th>Competência Desenvolvida</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><span class="text-bold">Casos Investigativos</span></td>
+                <td>Notícias reais e falsas apresentadas como manchetes e posts para análise</td>
+                <td>Identificação de padrões de desinformação</td>
+            </tr>
+            <tr>
+                <td><span class="text-bold">Ferramentas de Análise</span></td>
+                <td>Scanner de Gatilhos, Busca de Verificação, Análise de Domínio, Busca Reversa de Imagem</td>
+                <td>Uso de ferramentas reais de fact-checking</td>
+            </tr>
+            <tr>
+                <td><span class="text-bold">Classificação</span></td>
+                <td>Categorização por tipo (mis/desinformação), categoria (saúde, política, etc.) e motivação</td>
+                <td>Análise tipológica e compreensão das intenções</td>
+            </tr>
+            <tr>
+                <td><span class="text-bold">Pontuação e Feedback</span></td>
+                <td>Sistema de pontos com feedback detalhado por categoria + selo de "Análise Perfeita"</td>
+                <td>Autoavaliação e metacognição</td>
+            </tr>
+        </tbody>
+    </table>
+
+
+
+
+    <!-- Seção 4: Arquitetura Técnica -->
+    <h1>4. Arquitetura Computacional</h1>
+
+    <p>O projeto utiliza uma stack tecnológica robusta e padronizada (Vanilla JS), garantindo longevidade, leveza e
+        compatibilidade universal, sem dependência de frameworks pesados ou obsoletos.</p>
+
+    <h2>4.1. Stack Tecnológico</h2>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Tecnologia</th>
+                <th>Versão/Especificação</th>
+                <th>Uso</th>
+                <th>Conformidade</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><span class="text-bold">HTML5</span></td>
+                <td>Semântico, ARIA labels</td>
+                <td>Estrutura das páginas</td>
+                <td>WCAG 2.1 AA</td>
+            </tr>
+            <tr>
+                <td><span class="text-bold">CSS3</span></td>
+                <td>Custom Properties, Flexbox, Grid</td>
+                <td>Estilos e layout responsivo</td>
+                <td>Mobile-first</td>
+            </tr>
+            <tr>
+                <td><span class="text-bold">JavaScript</span></td>
+                <td>ES6+ (Vanilla)</td>
+                <td>Lógica, interatividade, jogos</td>
+                <td>Cross-browser</td>
+            </tr>
+            <tr>
+                <td><span class="text-bold">SCORM</span></td>
+                <td>1.2</td>
+                <td>Integração com LMS</td>
+                <td>Compatibilidade total</td>
+            </tr>
+            <tr>
+                <td><span class="text-bold">Web Speech API</span></td>
+                <td>Nativa do navegador</td>
+                <td>Text-to-Speech</td>
+                <td>Acessibilidade</td>
+            </tr>
+            <tr>
+                <td><span class="text-bold">Web Audio API</span></td>
+                <td>Nativa do navegador</td>
+                <td>Efeitos sonoros sintetizados</td>
+                <td>Sem dependências externas</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <h3>Estrutura de Arquivos</h3>
+    <div class="file-structure">
+        <span class="directory">fato_fake/</span><br>
+        <span class="indent">├── <span class="file">index.html</span> <span class="comment"># Shell principal
+                (SPA)</span></span><br>
+        <span class="indent">├── <span class="file">content.json</span> <span class="comment"># Estrutura dos
+                módulos</span></span><br>
+        <span class="indent">├── <span class="file">imsmanifest.xml</span> <span class="comment"># Manifesto SCORM
+                1.2</span></span><br>
+        <span class="indent">│</span><br>
+        <span class="indent">├── <span class="directory">assets/</span></span><br>
+        <span class="indent-2">├── <span class="directory">css/</span> <span class="comment"># Estilos (layout,
+                módulos, jogos)</span></span><br>
+        <span class="indent-2">├── <span class="directory">js/</span> <span class="comment"># JavaScript (app, i18n,
+                game engines)</span></span><br>
+        <span class="indent-3">├── <span class="directory">modules/</span> <span class="comment"># i18n,
+                classification-game, sound-effects</span></span><br>
+        <span class="indent-3">└── <span class="directory">data/</span> <span class="comment"># game-cases.json,
+                templates</span></span><br>
+        <span class="indent-2">├── <span class="directory">locales/</span> <span class="comment"># Traduções (PT, EN,
+                FR, ES)</span></span><br>
+        <span class="indent-2">├── <span class="directory">img/</span> <span class="comment"># Imagens e
+                mídia</span></span><br>
+        <span class="indent-2">└── <span class="directory">fonts/</span> <span class="comment"># Fontes web
+                (OpenDyslexic)</span></span><br>
+        <span class="indent">│</span><br>
+        <span class="indent">└── <span class="directory">paginas/</span> <span class="comment"># Conteúdo modular (37
+                páginas)</span></span><br>
+        <span class="indent-2">├── <span class="directory">module_00/</span> <span class="comment"># Boas-vindas (1
+                pág.)</span></span><br>
+        <span class="indent-2">├── <span class="directory">module_01/</span> <span class="comment"># Conceitos
+                Iniciais (8 págs.)</span></span><br>
+        <span class="indent-2">├── <span class="directory">module_02/</span> <span class="comment"># Panorama
+                Histórico (7 págs.)</span></span><br>
+        <span class="indent-2">├── <span class="directory">module_03/</span> <span class="comment"># Impactos Reais
+                (9 págs.)</span></span><br>
+        <span class="indent-2">├── <span class="directory">module_04/</span> <span class="comment"># Verificação (8
+                págs.)</span></span><br>
+        <span class="indent-2">├── <span class="directory">module_fake_hunter/</span> <span class="comment"># Caça-Fakes
+                e
+                recursos (4
+                págs.)</span></span><br>
+    </div>
+
+    <div class="page-break"></div>
+
+    <h2>4.2. Navegadores Suportados</h2>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Navegador</th>
+                <th>Versão Mínima</th>
+                <th>Status</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><span class="text-bold">Google Chrome</span></td>
+                <td>90+</td>
+                <td><span class="indicator indicator-green">Totalmente Suportado</span></td>
+            </tr>
+            <tr>
+                <td><span class="text-bold">Mozilla Firefox</span></td>
+                <td>88+</td>
+                <td><span class="indicator indicator-green">Totalmente Suportado</span></td>
+            </tr>
+            <tr>
+                <td><span class="text-bold">Microsoft Edge</span></td>
+                <td>90+</td>
+                <td><span class="indicator indicator-green">Totalmente Suportado</span></td>
+            </tr>
+            <tr>
+                <td><span class="text-bold">Safari</span></td>
+                <td>14+</td>
+                <td><span class="indicator indicator-green">Totalmente Suportado</span></td>
+            </tr>
+        </tbody>
+    </table>
+
+    <h2>4.3. Funcionalidades SCORM 1.2</h2>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Função</th>
+                <th>Variável SCORM</th>
+                <th>Implementação no Projeto</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><span class="text-bold">Bookmark</span></td>
+                <td>cmi.core.lesson_location</td>
+                <td>Armazena a última página visitada para retorno exato</td>
+            </tr>
+            <tr>
+                <td><span class="text-bold">Status</span></td>
+                <td>cmi.core.lesson_status</td>
+                <td>Controla 'incomplete', 'completed' e 'passed'</td>
+            </tr>
+            <tr>
+                <td><span class="text-bold">Score</span></td>
+                <td>cmi.core.score.raw</td>
+                <td>Armazena a pontuação do Caça-Fakes (0-100)</td>
+            </tr>
+            <tr>
+                <td><span class="text-bold">Persistência</span></td>
+                <td>cmi.suspend_data</td>
+                <td>Salva estado detalhado (idioma, progresso granular, pontuações)</td>
+            </tr>
+            <tr>
+                <td><span class="text-bold">Tempo</span></td>
+                <td>cmi.core.session_time</td>
+                <td>Rastreamento de tempo de sessão ativo</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <h2>4.4. Módulos JavaScript Principais</h2>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Módulo</th>
+                <th>Arquivo</th>
+                <th>Função</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><span class="text-bold">App Core</span></td>
+                <td>app.js</td>
+                <td>Orquestração da SPA, navegação, carregamento de módulos</td>
+            </tr>
+            <tr>
+                <td><span class="text-bold">Internacionalização</span></td>
+                <td>i18n.js</td>
+                <td>Sistema de tradução dinâmica com fallback</td>
+            </tr>
+            <tr>
+                <td><span class="text-bold">SCORM Wrapper</span></td>
+                <td>scorm-wrapper.js</td>
+                <td>Abstração da API SCORM 1.2</td>
+            </tr>
+            <tr>
+                <td><span class="text-bold">Game Engine</span></td>
+                <td>game-engine.js</td>
+                <td>Motor do Caça-Fakes (fases, ferramentas, vereditos)</td>
+            </tr>
+            <tr>
+                <td><span class="text-bold">Classification Game</span></td>
+                <td>classification-game.js</td>
+                <td>Classificação de fake news (tipo, categoria, motivação)</td>
+            </tr>
+            <tr>
+                <td><span class="text-bold">Sound Effects</span></td>
+                <td>sound-effects.js</td>
+                <td>16 efeitos sintetizados via Web Audio API</td>
+            </tr>
+            <tr>
+                <td><span class="text-bold">Accessibility</span></td>
+                <td>accessibility.js</td>
+                <td>Alto contraste, ajuste de fonte, modo dislexia, VLibras</td>
+            </tr>
+            <tr>
+                <td><span class="text-bold">Audio Manager</span></td>
+                <td>audio-manager.js</td>
+                <td>Text-to-Speech com controles de velocidade e voz</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <!-- Seção 5: Segurança -->
+    <h1>5. Segurança e Integridade do Conteúdo</h1>
+
+    <p>A arquitetura do projeto prioriza a integridade técnica e a proteção da propriedade intelectual, implementando
+        medidas que dificultam a reprodução não autorizada e asseguram o funcionamento correto apenas no ambiente
+        designado.</p>
+
+    <h2>5.1. Preservação da Estrutura</h2>
+
+    <div class="specification-box" style="border-left-color: #6C757D;">
+        <div class="specification-title" style="color: #6C757D;">Integridade Digital</div>
+        <p style="margin-bottom: 0;">O curso possui uma estrutura interdependente. A organização dos arquivos e a lógica
+            de carregamento foram desenhadas para operar em conjunto, dificultando a extração ou uso isolado de
+            componentes fora do contexto original.</p>
+    </div>
+
+    <h2>5.2. Camadas de Proteção</h2>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Recurso</th>
+                <th>Função Técnica</th>
+                <th>Objetivo</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><span class="text-bold">Minificação de Código</span></td>
+                <td>Redução e ofuscação dos arquivos JavaScript principais.</td>
+                <td>Proteger a lógica de programação e reduzir o tamanho dos arquivos.</td>
+            </tr>
+            <tr>
+                <td><span class="text-bold">Rastreabilidade</span></td>
+                <td>Metadados descritivos nos arquivos de mídia e código.</td>
+                <td>Identificar a origem e autoria do material.</td>
+            </tr>
+            <tr>
+                <td><span class="text-bold">Interdependência</span></td>
+                <td>Estrutura modular vinculada ao manifesto SCORM e content.json central.</td>
+                <td>Assegurar que o conteúdo só funcione com a estrutura completa e validada.</td>
+            </tr>
+            <tr>
+                <td><span class="text-bold">Avisos de Propriedade</span></td>
+                <td>Marcadores de Copyright no código, LICENSE e interface.</td>
+                <td>Informar claramente a titularidade protegida do conteúdo.</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <!-- Seção 6: Publicação -->
+    <h1>6. Publicação e Distribuição</h1>
+
+    <h2>6.1. Métodos de Implantação</h2>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Método</th>
+                <th>Descrição</th>
+                <th>Requisitos</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><span class="text-bold">SCORM 1.2 (LMS)</span></td>
+                <td>Upload do pacote .zip no LMS corporativo</td>
+                <td>LMS com suporte a SCORM 1.2 (Moodle, Blackboard, etc.)</td>
+            </tr>
+            <tr>
+                <td><span class="text-bold">Servidor Web</span></td>
+                <td>Hospedagem em qualquer servidor estático</td>
+                <td>Servidor HTTP (Apache, Nginx, etc.)</td>
+            </tr>
+            <tr>
+                <td><span class="text-bold">Execução Local</span></td>
+                <td>python -m http.server ou npx serve .</td>
+                <td>Python 3+ ou Node.js</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <h2>6.2. Documentação Técnica</h2>
+    <ul>
+        <li><span class="text-bold">README.md:</span> Instruções detalhadas de setup, estrutura do projeto e guia de
+            contribuição.</li>
+        <li><span class="text-bold">LICENSE:</span> Termos de uso e direitos autorais do conteúdo e código.</li>
+        <li><span class="text-bold">Relatório do Projeto (Auto-referência):</span> Este próprio documento, que atua como
+            Documentação.</li>
+    </ul>
+
+    <!-- Seção 7: Contato -->
+    <h1>7. Contato e Suporte</h1>
+
+    <p>Para dúvidas técnicas, suporte ou futuras atualizações do curso, contate a equipe de desenvolvimento:</p>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Responsável</th>
+                <th>E-mail</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><span class="text-bold">Felipe Correa Bitencourt</span></td>
+                <td><a href="mailto:felipe.cb2511@gmail.com">felipe.cb2511@gmail.com</a></td>
+            </tr>
+            <tr>
+                <td><span class="text-bold">Eduarda Tessari Pereira</span></td>
+                <td><a href="mailto:dudatessari@gmail.com">dudatessari@gmail.com</a></td>
+            </tr>
+        </tbody>
+    </table>
+
+    <div class="document-footer">
+        <div class="footer-info">
+            <span>Relatório Técnico-Pedagógico &copy; 4 de Março de 2026</span>
+            <span>Documentação Oficial</span>
+        </div>
+        <div class="document-id">ID: FOF-DOC-2026-REV01</div>
+    </div>
+
+</body>
+
+</html>

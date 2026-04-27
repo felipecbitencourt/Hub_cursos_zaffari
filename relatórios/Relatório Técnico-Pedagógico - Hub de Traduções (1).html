@@ -1,0 +1,742 @@
+<!DOCTYPE html>
+<!-- saved from url=(0206)file:///C:/Users/FELIPE%20BITENCOURT/AppData/Local/Packages/5319275A.WhatsAppDesktop_cv1g1gvanyjgm/LocalState/sessions/030A9F276DC9F9B1C007F066227134CD196FE95E/transfers/2026-17/relatorio-hub-traducoes.html -->
+<html lang="pt-BR"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Relatório Técnico-Pedagógico - Hub de Traduções</title>
+    <style>
+        /* Reset e configurações base */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* Configurações de impressão */
+        @media print {
+            @page {
+                margin: 15mm;
+                size: A4;
+            }
+
+            .page-break {
+                page-break-before: always;
+            }
+
+            body {
+                font-size: 11pt;
+                line-height: 1.4;
+            }
+
+            .color-bar {
+                -webkit-print-color-adjust: exact;
+                print-color-adjust: exact;
+            }
+
+            a {
+                color: #000;
+                text-decoration: none;
+            }
+
+            .page-number::after {
+                content: "Página " counter(page);
+                position: absolute;
+                bottom: 10mm;
+                right: 15mm;
+                font-size: 10pt;
+                color: #666;
+            }
+        }
+
+        /* Estilos principais */
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: #fff;
+            max-width: 210mm;
+            margin: 0 auto;
+            padding: 15mm;
+            position: relative;
+            counter-reset: page;
+        }
+
+        /* Barra de cor lateral */
+        .color-bar {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 6mm;
+            height: 100%;
+            background: #2C3E50;
+            z-index: 1;
+        }
+
+        /* Cabeçalho do documento */
+        .document-header {
+            position: relative;
+            z-index: 2;
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 2px solid #e0e0e0;
+        }
+
+        .client-identification {
+            color: #666;
+            font-size: 11pt;
+            font-weight: 600;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            margin-bottom: 5px;
+        }
+
+        .report-title {
+            color: #2C3E50;
+            font-size: 24pt;
+            font-weight: 700;
+            margin-bottom: 8px;
+            line-height: 1.2;
+        }
+
+        .course-title {
+            color: #3498DB;
+            font-size: 16pt;
+            font-weight: 600;
+            margin-bottom: 20px;
+        }
+
+        /* Metadados do documento */
+        .document-metadata {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+            margin-top: 20px;
+            padding: 15px;
+            background: #f8f9fa;
+            border-left: 4px solid #3498DB;
+            border-radius: 4px;
+        }
+
+        .metadata-item {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .metadata-label {
+            font-size: 9pt;
+            color: #666;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 4px;
+            font-weight: 600;
+        }
+
+        .metadata-value {
+            font-size: 11pt;
+            color: #333;
+            font-weight: 500;
+        }
+
+        /* Títulos e seções */
+        h1 {
+            font-size: 18pt;
+            font-weight: 600;
+            color: #2C3E50;
+            margin: 30px 0 15px 0;
+            padding-bottom: 8px;
+            border-bottom: 2px solid #e0e0e0;
+            position: relative;
+        }
+
+        h1::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: -2px;
+            width: 50px;
+            height: 2px;
+            background: #3498DB;
+        }
+
+        h2 {
+            font-size: 14pt;
+            font-weight: 600;
+            color: #444;
+            margin: 25px 0 12px 0;
+        }
+
+        h3 {
+            font-size: 12pt;
+            font-weight: 600;
+            color: #555;
+            margin: 20px 0 10px 0;
+        }
+
+        h4 {
+            font-size: 11pt;
+            font-weight: 600;
+            color: #666;
+            margin: 18px 0 8px 0;
+        }
+
+        /* Parágrafos e texto */
+        p {
+            margin-bottom: 12px;
+            text-align: justify;
+            font-size: 11pt;
+        }
+
+        /* Listas */
+        ul,
+        ol {
+            margin: 0 0 15px 25px;
+        }
+
+        li {
+            margin-bottom: 6px;
+            font-size: 11pt;
+        }
+
+        /* Tabelas profissionais */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0 20px 0;
+            font-size: 10pt;
+            border: 1px solid #ddd;
+        }
+
+        thead {
+            background: #3498DB;
+        }
+
+        th {
+            color: white;
+            padding: 12px 15px;
+            text-align: left;
+            font-weight: 600;
+            font-size: 10pt;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            border-right: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        th:last-child {
+            border-right: none;
+        }
+
+        td {
+            padding: 10px 15px;
+            border-bottom: 1px solid #eee;
+            vertical-align: top;
+        }
+
+        tr:last-child td {
+            border-bottom: none;
+        }
+
+        tr:nth-child(even) {
+            background: #fafafa;
+        }
+
+        /* Estrutura de arquivos */
+        .file-structure {
+            background: #f8f9fa;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            padding: 15px;
+            margin: 15px 0;
+            font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
+            font-size: 10pt;
+            line-height: 1.6;
+        }
+
+        .directory {
+            color: #2C3E50;
+            font-weight: 600;
+            display: inline-block;
+            margin-right: 5px;
+        }
+
+        .file {
+            color: #333;
+        }
+
+        .comment {
+            color: #666;
+            font-style: italic;
+        }
+
+        .indent {
+            margin-left: 20px;
+        }
+
+        .indent-2 {
+            margin-left: 40px;
+        }
+
+        /* Indicadores e tags */
+        .indicator {
+            display: inline-block;
+            padding: 3px 8px;
+            background: #f0f0f0;
+            border-radius: 3px;
+            font-size: 9pt;
+            font-weight: 600;
+            color: #666;
+            margin-right: 5px;
+            vertical-align: middle;
+        }
+
+        .indicator-blue {
+            background: #3498DB;
+            color: white;
+        }
+
+        .indicator-dark {
+            background: #2C3E50;
+            color: white;
+        }
+
+        /* Especificações técnicas */
+        .specification-box {
+            background: #f8f9fa;
+            border-left: 4px solid #3498DB;
+            padding: 15px;
+            margin: 15px 0;
+        }
+
+        .specification-title {
+            font-size: 11pt;
+            font-weight: 600;
+            color: #3498DB;
+            margin-bottom: 10px;
+        }
+
+        /* Configurações da Grid */
+        .config-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 15px;
+            margin: 20px 0;
+        }
+
+        .config-item {
+            background: white;
+            border: 1px solid #e0e0e0;
+            border-radius: 4px;
+            padding: 15px;
+        }
+
+        .config-title {
+            font-size: 11pt;
+            font-weight: 600;
+            color: #2C3E50;
+            margin-bottom: 8px;
+            padding-bottom: 5px;
+            border-bottom: 1px solid #f0f0f0;
+        }
+
+        .config-desc {
+            font-size: 10pt;
+            color: #666;
+            line-height: 1.5;
+        }
+
+        .text-bold {
+            font-weight: 600;
+        }
+
+        /* Responsividade para impressão */
+        @media screen and (max-width: 768px) {
+            body {
+                padding: 10mm;
+            }
+
+            .document-metadata {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Barra lateral de identidade -->
+    <div class="color-bar"></div>
+
+    <!-- Número da página (visível apenas na impressão) -->
+    <div class="page-number"></div>
+
+    <!-- Cabeçalho do documento -->
+    <div class="document-header">
+        <div class="client-identification">DOCUMENTAÇÃO TÉCNICA E PEDAGÓGICA</div>
+        <h1 class="report-title">Relatório Técnico-Pedagógico</h1>
+        <div class="course-title">Projeto: Hub de Traduções · Grupo Zaffari</div>
+
+        <div class="document-metadata">
+            <div class="metadata-item">
+                <span class="metadata-label">Formato</span>
+                <span class="metadata-value"><span class="indicator indicator-blue">SCORM 1.2</span></span>
+            </div>
+            <div class="metadata-item">
+                <span class="metadata-label">Público-alvo</span>
+                <span class="metadata-value">Colaboradores do Grupo Zaffari</span>
+            </div>
+            <div class="metadata-item">
+                <span class="metadata-label">Estrutura</span>
+                <span class="metadata-value">~54 MB (67 arquivos)</span>
+            </div>
+            <div class="metadata-item">
+                <span class="metadata-label">Idiomas a serem suportados</span>
+                <span class="metadata-value">PT, ES, FR, EN</span>
+            </div>
+            <div class="metadata-item">
+                <span class="metadata-label">Abordagem</span>
+                <span class="metadata-value">Ferramental Just-in-Time</span>
+            </div>
+            <div class="metadata-item">
+                <span class="metadata-label">Páginas Dinâmicas</span>
+                <span class="metadata-value">7 Páginas de Conteúdo</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Objetivo do Projeto -->
+    <div class="specification-box">
+        <div class="specification-title">Objetivo do Projeto</div>
+        <p style="margin-bottom: 0;">Fornecer um ambiente centralizado, dinâmico e autoexplicativo que capacite os colaboradores do Grupo Zaffari de diferentes origens a superarem as barreiras linguísticas. O projeto atua com ferramentas instrucionais focadas em tradução de documentos e tradução simultânea em reuniões, promovendo uma cultura efetiva de inclusão e autonomia na rotina coorporativa.</p>
+    </div>
+
+    <!-- Seção 1: Arquitetura Pedagógica -->
+    <h1>1. Arquitetura Pedagógica</h1>
+
+    <p>O Hub de Traduções opera como um portal de aprendizado sob demanda, priorizando a utilidade prática e o acesso rápido a soluções. Em vez de ser um treinamento passivo, é um ecossistema de performance support baseado em autonomia.</p>
+
+    <h2>1.1. Fundamentos Instrucionais</h2>
+
+    <p><span class="text-bold">Aprendizagem Just-in-Time:</span> O ambiente é projetado para que o colaborador consuma o conteúdo exatamente no momento em que precisa resolver um problema (exemplo: iniciar uma reunião com um estrangeiro ou ler um documento físico em outro idioma).</p>
+    <ul>
+        <li><span class="text-bold">Aplicabilidade Prática:</span> Foco absoluto em como usar ferramentas já disponíveis (Google Docs, Google Tradutor, Microsoft Teams).</li>
+        <li><span class="text-bold">Andragogia:</span> Respeita a bagagem do adulto corporativo, entregando objetividade, rotas curtas de aprendizado e centralizando as informações de utilidade real.</li>
+    </ul>
+
+    <h2>1.2. Metodologias e Estratégias</h2>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Estratégia</th>
+                <th>Aplicação no Hub</th>
+                <th>Benefício Pedagógico</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><span class="text-bold">Microlearning</span></td>
+                <td>Tutoriais divididos em pequenos fluxos independentes (ex: como traduzir docs físicos).</td>
+                <td>Baixa carga cognitiva e rápida retenção das instruções.</td>
+            </tr>
+            <tr>
+                <td><span class="text-bold">Suporte ao Desempenho</span></td>
+                <td>Hub funciona como um repositório rápido de soluções passo-a-passo.</td>
+                <td>O colaborador aplica simultaneamente o que vê na tela em seu trabalho.</td>
+            </tr>
+            <tr>
+                <td><span class="text-bold">Multimodalidade</span></td>
+                <td>Uso de textos descritivos curtos, ícones e tags categorizadoras.</td>
+                <td>Atende diferentes preferências no processamento da informação visual.</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <div class="page-break"></div>
+
+    <h2>1.3. Estrutura de Conteúdo e Trilhas</h2>
+
+    <p>O ecossistema não atua apenas como um repositório institucional de links, mas como uma plataforma estruturada de capacitação. Para <strong>toda e qualquer ferramenta indicada nos módulos</strong>, o colaborador é amparado por um ambiente de suporte instrucional detalhado composto por:</p>
+    
+    <div class="config-grid" style="margin-top: 15px; margin-bottom: 25px;">
+        <div class="config-item">
+            <div class="config-title">Vídeos Tutoriais</div>
+            <p class="config-desc">Demonstrações visuais estruturadas que evidenciam as interações sistêmicas necessárias, simulando o comportamento da solução tecnológica em tempo real para otimizar o tempo de assimilação.</p>
+        </div>
+        <div class="config-item">
+            <div class="config-title">Manuais de Uso (Passo a Passo)</div>
+            <p class="config-desc">Guias operacionais responsivos embasados na integração texto-imagem. O formato combina capturas de interface detalhadas com instruções técnicas assertivas, assegurando alta acessibilidade e padronização procedural.</p>
+        </div>
+        <div class="config-item">
+            <div class="config-title">Contexto e Aplicações Práticas</div>
+            <p class="config-desc">Especificam em qual condição operacional cada sistema oferece maior resolutividade (ex.: uso do Microsoft Teams para teleconferências remotas versus o Modo Conversa do Google Translate para interações ágeis e presenciais).</p>
+        </div>
+    </div>
+
+    <p>Desse modo, o conteúdo se divide da seguinte forma entre os dois temas prioritários:</p>
+
+    <h3>Módulos de Soluções</h3>
+    <ul>
+        <li><span class="text-bold">Módulo 1: Traduzir Documentos:</span> Focado em suprir demandas de traduções assíncronas para arquivos inteiros, imagens ou documentação em papel:
+            <ul>
+                <li><span class="text-bold">Google Translate:</span> Tutorial explorando o upload direto de arquivos originais (Word, PDF, Excel) que devolve versões formatadas e traduzidas.</li>
+                <li><span class="text-bold">Google Docs:</span> Demonstração da ferramenta nativa que realiza uma tradução contínua, criando ao usuário cópias prontas dentro de seu drive corporativo.</li>
+                <li><span class="text-bold">Gemini (Assistência via IA e Fotos):</span> Emprego de IA generativa para ler e interpretar contexto altamente técnico de documentos físicos. Útil especialmente para fotografias tiradas do próprio celular em campo.</li>
+            </ul>
+        </li>
+        <li><span class="text-bold">Módulo 2: Tradução Simultânea:</span> Ampla ação voltada a quebrar a barreira do diálogo instantâneo (comunicação interpessoal remota ou presencial):
+            <ul>
+                <li><span class="text-bold">Microsoft Teams (Reuniões de Vídeo):</span> Instrucional para acionar o uso de legendamento ao vivo e traduções de voz a fim de facilitar reuniões virtuais globais.</li>
+                <li><span class="text-bold">Google Translate (Modo Conversa):</span> Tutorial orientando o colaborador a usar o modo de escuta de áudio bilateral via smartphone para a comunicação fluida e imediata de forma presencial.</li>
+            </ul>
+        </li>
+    </ul>
+
+    <!-- Seção 2: Design e Interface -->
+    <h1>2. Design e Interface do Usuário</h1>
+
+    <p>A arquitetura visual foca na "Carga Cognitiva Reduzida". Para um hub que visa explicar soluções tecnológicas a públicos de diferentes idiomas, a usabilidade precisa ser intuitiva, baseada em elementos visuais amigáveis (bento box design) e tipografia neutra de alta legibilidade.</p>
+
+    <h2>2.1. Identidade Visual e Experiência</h2>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Elemento</th>
+                <th>Especificação Analítica</th>
+                <th>Justificativa Mnemônica e Funcional</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><span class="text-bold">Padrão Cromático Corporativo</span></td>
+                <td>Tons de cinza e preto com contrastes estratégicos (azul, verde, amarelo).</td>
+                <td>Transmite sobriedade institucional da marca Zaffari, mas usando destaques em cor para orientar atenção.</td>
+            </tr>
+            <tr>
+                <td><span class="text-bold">Layout Tipo "Bento"</span></td>
+                <td>Módulos encapsulados em cards arredondados.</td>
+                <td>Fragmenta a informação de maneira limpa; o usuário entende imediatamente onde clicar.</td>
+            </tr>
+            <tr>
+                <td><span class="text-bold">Componentes Tags</span></td>
+                <td>Categorização via pequenas etiquetas visuais.</td>
+                <td>Reduz o tempo de leitura. Exemplo: Tag azul para Google, Tag verde para DeepL.</td>
+            </tr>
+            <tr>
+                <td><span class="text-bold">Wordcloud e Mascote Hero</span></td>
+                <td>Banner visual e mascote Zaffari com "Olá" em vários idiomas.</td>
+                <td>Sensação imediata de acolhimento e diversidade no primeiro contato visual.</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <h2>2.2. Recursos de Acessibilidade <span class="indicator indicator-blue" style="background:#34495e; color: #fff;">A implementar</span></h2>
+
+    <div class="config-grid">
+        <div class="config-item">
+            <div class="config-title">Internacionalização Completa</div>
+            <p class="config-desc">Conteúdo integralmente traduzido para Português, Inglês, Espanhol e Francês. A alternância de idioma é instantânea e persiste entre sessões.</p>
+        </div>
+        <div class="config-item">
+            <div class="config-title">Adaptação Visual</div>
+            <p class="config-desc">Ferramentas de conforto visual incluem:</p>
+            <ul style="margin: 5px 0 0 15px; font-size: 10pt; color: #666;">
+                <li><strong>Alto Contraste:</strong> Modo noturno.</li>
+                <li><strong>Regulação de Fonte:</strong> Ajuste granular do tamanho do texto.</li>
+                <li><strong>Modo Dislexia:</strong> Fonte OpenDyslexic para facilitar a leitura.</li>
+            </ul>
+        </div>
+        <div class="config-item">
+            <div class="config-title">VLibras Integrado</div>
+            <p class="config-desc">Widget de tradução automática para Língua Brasileira de Sinais (Libras), garantindo acessibilidade para pessoas surdas ou com deficiência auditiva.</p>
+        </div>
+    </div>
+
+    <h2>2.3. Responsividade e Adaptação de Telas</h2>
+
+    <p>Toda a interface foi arquitetada operando princípios fundamentais de <em>Mobile-First</em> e design reativo, garantindo acesso não apenas nos escritórios (desktops/notebooks), mas focado para atender colaboradores no piso de loja operando via smartphones ou tablets, sem perda de conteúdo.</p>
+
+    <div class="config-grid">
+        <div class="config-item">
+            <div class="config-title">Layout Fluido (Flex &amp; Grid)</div>
+            <p class="config-desc">Uso maciço de CSS Flexbox e Grid para que as caixas de ferramentas e seções textuais se reorganizem verticalmente em telas menores, evitando rolagem horizontal ou quebra de elementos visuais centrais.</p>
+        </div>
+        <div class="config-item">
+            <div class="config-title">Navegação Tátil (Touch-Friendly)</div>
+            <p class="config-desc">Em dispositivos móveis, o menu principal transita automaticamente para um formato "Hamburguer" (colapsável), otimizando a altura útil da tela e facilitando cliques precisos através do polegar, adequando alvos de toque às diretrizes (min 48x48px).</p>
+        </div>
+        <div class="config-item">
+            <div class="config-title">Elementos Visuais Adaptativos</div>
+            <p class="config-desc">Mídias, ícones e tutoriais visuais (prints) redimensionam-se proporcionalmente ao viewport ativo (<span class="code-block" style="padding: 2px 4px; border: none; font-size: 9pt;">max-width: 100%</span>), mantendo peso visual e legibilidade de textos da interface independentemente de que tamanho a tela apresente.</p>
+        </div>
+    </div>
+
+    <!-- Seção 3: Arquitetura Técnica -->
+    <h1>3. Arquitetura Computacional</h1>
+
+    <p>Do ponto de vista tecnológico, o desenvolvimento prioriza a ausência de atrito. A exclusão de frameworks pesados confere ao sistema a máxima estabilidade e carregamento instantâneo, fatores indispensáveis para o ambiente SCORM de aprendizado corporativo (LMS).</p>
+
+    <h2>3.1. Stack Tecnológico Aplicado</h2>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Tecnologia</th>
+                <th>Função / Justificativa do Uso</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><span class="text-bold">Vanilla JavaScript (ES6+)</span></td>
+                <td>Manipulação do DOM, controle de interações e motor de dicionário de idiomas sem frameworks terceiros.</td>
+            </tr>
+            <tr>
+                <td><span class="text-bold">Semântica HTML5</span></td>
+                <td>Construção de seções como nav, section, main e article limpas, garantindo suporte de longo prazo nos navegadores corporativos.</td>
+            </tr>
+            <tr>
+                <td><span class="text-bold">Vanilla CSS3 (BEM Methods)</span></td>
+                <td>Uso de variáveis globais e estruturação baseada em blocos e modificadores. Previne quebras visuais e falhas no modelo responsivo.</td>
+            </tr>
+            <tr>
+                <td><span class="text-bold">SCORM 1.2 Nativo</span></td>
+                <td>Arquitetura de exportação encapsulada com manifest.xml para comunicação universal em plataformas de LMS da companhia.</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <div class="page-break"></div>
+
+    <h2>3.2. Navegadores Suportados</h2>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Navegador</th>
+                <th>Versão Mínima</th>
+                <th>Status</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><span class="text-bold">Google Chrome</span></td>
+                <td>90+</td>
+                <td><span class="indicator indicator-blue">Totalmente Suportado</span></td>
+            </tr>
+            <tr>
+                <td><span class="text-bold">Mozilla Firefox</span></td>
+                <td>88+</td>
+                <td><span class="indicator indicator-blue">Totalmente Suportado</span></td>
+            </tr>
+            <tr>
+                <td><span class="text-bold">Microsoft Edge</span></td>
+                <td>90+</td>
+                <td><span class="indicator indicator-blue">Totalmente Suportado</span></td>
+            </tr>
+            <tr>
+                <td><span class="text-bold">Safari</span></td>
+                <td>14+</td>
+                <td><span class="indicator indicator-blue">Totalmente Suportado</span></td>
+            </tr>
+        </tbody>
+    </table>
+
+    <div class="page-break"></div>
+
+    <h2>3.3. Estrutura de Arquivos</h2>
+
+    <p>O desenvolvimento modular obedece à separação de camadas entre marcação, estilos e lógica de negócios focada em tradução:</p>
+
+    <div class="file-structure">
+        <span class="directory">translate-hub/</span><br>
+        <span class="indent">├── <span class="file">imsmanifest.xml</span> <span class="comment"># Estrutura de encapsulamento SCORM</span></span><br>
+        <span class="indent">├── <span class="file">index.html</span> <span class="comment"># Tela de Entrada e Boas-vindas</span></span><br>
+        <span class="indent">├── <span class="directory">pages/</span> <span class="comment"># Diretório para Módulos de Interface</span></span><br>
+        <span class="indent-2">├── <span class="file">traduzir-documentos.html</span></span><br>
+        <span class="indent-2">├── <span class="file">traducao-simultanea.html</span></span><br>
+        <span class="indent-2">├── <span class="file">docs-fisicos-tutorial.html</span></span><br>
+        <span class="indent-2">├── <span class="file">teams-tutorial.html</span></span><br>
+        <span class="indent-2">└── <span class="file">google-tradutor-tutorial...</span></span><br>
+        <span class="indent">├── <span class="directory">assets/</span></span><br>
+        <span class="indent-2">├── <span class="directory">css/</span> <span class="file">style.css</span> <span class="comment"># Design System</span></span><br>
+        <span class="indent-2">├── <span class="directory">js/</span></span><br>
+        <span class="indent-3">├── <span class="file">main.js</span></span><br>
+        <span class="indent-3">├── <span class="file">i18n.js</span> <span class="comment"># Motor Custom de Tradução</span></span><br>
+        <span class="indent-3">└── <span class="file">scorm.js</span> <span class="comment"># Comunicação LMS</span></span><br>
+        <span class="indent-2">├── <span class="directory">locales/</span></span><br>
+        <span class="indent-3">├── <span class="file">pt.js</span></span><br>
+        <span class="indent-3">└── <span class="file">es.js</span> <span class="comment"># Dicionários de strings em tempo real</span></span><br>
+    </div>
+
+
+    <!-- Seção 4: Métricas -->
+    <h1>4. Métricas do Projeto</h1>
+
+    <h2>4.1. Estatísticas Gerais</h2>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Métrica</th>
+                <th>Valor</th>
+                <th>Análise</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><span class="text-bold">Tamanho Total</span></td>
+                <td>~54 MB</td>
+                <td>Volume atrelado predominantemente a capturas de tela dos tutoriais detalhados</td>
+            </tr>
+            <tr>
+                <td><span class="text-bold">Quantidade de Arquivos</span></td>
+                <td>67</td>
+                <td>Projeto de escopo focado contendo apenas a estrutura útil e essencial</td>
+            </tr>
+            <tr>
+                <td><span class="text-bold">Maior Arquivo JavaScript</span></td>
+                <td>3.8 KB (tutorial.js)</td>
+                <td>Script Vanilla JS ultraleve; máxima eficiência no core de internacionalização</td>
+            </tr>
+            <tr>
+                <td><span class="text-bold">Ativos Visuais (Imagens)</span></td>
+                <td>~53 MB (Aprox. 98%)</td>
+                <td>Reflete o foco instrucional: alta dependência de prints para o uso de sistemas e softwares</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <!-- Seção 5: Contato -->
+    <h1>5. Contato e Suporte</h1>
+
+    <p>Para dúvidas técnicas, suporte ou futuras atualizações do projeto, contate a equipe de desenvolvimento:</p>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Responsável</th>
+                <th>E-mail</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><span class="text-bold">Felipe Correa Bitencourt</span></td>
+                <td><a href="mailto:felipe.cb2511@gmail.com">felipe.cb2511@gmail.com</a></td>
+            </tr>
+            <tr>
+                <td><span class="text-bold">Eduarda Tessari Pereira</span></td>
+                <td><a href="mailto:dudatessari@gmail.com">dudatessari@gmail.com</a></td>
+            </tr>
+        </tbody>
+    </table>
+
+    <!-- Rodapé do documento -->
+    <div class="document-footer">
+        <div class="footer-info">
+            <span>Grupo Zaffari - Hub de Traduções</span>
+            <span>Documentação Técnica de Arquitetura</span>
+        </div>
+        <div class="document-id">ID Doc: HUB-TRAD-2026-ENG</div>
+    </div>
+
+
+
+</body></html>

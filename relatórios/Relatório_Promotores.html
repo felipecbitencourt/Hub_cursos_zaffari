@@ -1,0 +1,635 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Relatório Técnico-Pedagógico - Integração de Promotores Zaffari</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        @media print {
+            @page { margin: 15mm; size: A4; }
+            .page-break { page-break-before: always; }
+            body { font-size: 11pt; line-height: 1.4; }
+            .color-bar { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+            a { color: #000; text-decoration: none; }
+            .page-number::after {
+                content: "Página " counter(page);
+                position: absolute;
+                bottom: 10mm;
+                right: 15mm;
+                font-size: 10pt;
+                color: #666;
+            }
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: #fff;
+            max-width: 210mm;
+            margin: 0 auto;
+            padding: 15mm;
+            position: relative;
+            counter-reset: page;
+        }
+
+        .color-bar {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 6mm;
+            height: 100%;
+            background: linear-gradient(180deg, #E30613, #B91C1C);
+            z-index: 1;
+        }
+
+        .document-header {
+            position: relative;
+            z-index: 2;
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 2px solid #e0e0e0;
+        }
+
+        .client-identification {
+            color: #666;
+            font-size: 11pt;
+            font-weight: 600;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            margin-bottom: 5px;
+        }
+
+        .report-title {
+            color: #2C3E50;
+            font-size: 24pt;
+            font-weight: 700;
+            margin-bottom: 8px;
+            line-height: 1.2;
+        }
+
+        .course-title {
+            color: #E30613;
+            font-size: 16pt;
+            font-weight: 600;
+            margin-bottom: 20px;
+        }
+
+        .document-metadata {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+            margin-top: 20px;
+            padding: 15px;
+            background: #f8f9fa;
+            border-left: 4px solid #E30613;
+            border-radius: 4px;
+        }
+
+        .metadata-item { display: flex; flex-direction: column; }
+        .metadata-label {
+            font-size: 9pt; color: #666; text-transform: uppercase; letter-spacing: .5px; margin-bottom: 4px; font-weight: 600;
+        }
+        .metadata-value { font-size: 11pt; color: #333; font-weight: 500; }
+
+        h1 {
+            font-size: 18pt;
+            font-weight: 600;
+            color: #2C3E50;
+            margin: 30px 0 15px;
+            padding-bottom: 8px;
+            border-bottom: 2px solid #e0e0e0;
+            position: relative;
+        }
+        h1::before {
+            content: "";
+            position: absolute;
+            left: 0;
+            bottom: -2px;
+            width: 50px;
+            height: 2px;
+            background: #E30613;
+        }
+        h2 { font-size: 14pt; font-weight: 600; color: #444; margin: 25px 0 12px; }
+        h3 { font-size: 12pt; font-weight: 600; color: #555; margin: 20px 0 10px; }
+        p { margin-bottom: 12px; text-align: justify; font-size: 11pt; }
+        ul, ol { margin: 0 0 15px 25px; }
+        li { margin-bottom: 6px; font-size: 11pt; }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0 20px;
+            font-size: 10pt;
+            border: 1px solid #ddd;
+        }
+        thead { background: #E30613; }
+        th {
+            color: #fff;
+            padding: 12px 15px;
+            text-align: left;
+            font-weight: 600;
+            font-size: 10pt;
+            text-transform: uppercase;
+            letter-spacing: .5px;
+            border-right: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        th:last-child { border-right: none; }
+        td { padding: 10px 15px; border-bottom: 1px solid #eee; vertical-align: top; }
+        tr:last-child td { border-bottom: none; }
+        tr:nth-child(even) { background: #fafafa; }
+
+        .file-structure, .code-block {
+            background: #f8f9fa;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            padding: 15px;
+            margin: 15px 0;
+            font-family: Consolas, Monaco, "Courier New", monospace;
+            font-size: 10pt;
+            line-height: 1.6;
+        }
+        .directory { color: #2C3E50; font-weight: 600; }
+        .file { color: #333; }
+        .comment { color: #666; font-style: italic; }
+        .indent { margin-left: 20px; }
+        .indent-2 { margin-left: 40px; }
+        .indent-3 { margin-left: 60px; }
+
+        .indicator {
+            display: inline-block;
+            padding: 3px 8px;
+            border-radius: 3px;
+            font-size: 9pt;
+            font-weight: 600;
+            color: #fff;
+            margin-right: 5px;
+            vertical-align: middle;
+        }
+        .indicator-red { background: #DC3545; }
+        .indicator-green { background: #27AE60; }
+        .indicator-blue { background: #2563EB; }
+        .indicator-amber { background: #F59E0B; }
+
+        .specification-box {
+            background: #f8f9fa;
+            border-left: 4px solid #E30613;
+            padding: 15px;
+            margin: 15px 0;
+        }
+        .specification-title {
+            font-size: 11pt;
+            font-weight: 600;
+            color: #E30613;
+            margin-bottom: 10px;
+        }
+
+        .config-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 15px;
+            margin: 20px 0;
+        }
+        .config-item {
+            background: #fff;
+            border: 1px solid #e0e0e0;
+            border-radius: 4px;
+            padding: 15px;
+        }
+        .config-title {
+            font-size: 11pt;
+            font-weight: 600;
+            color: #2C3E50;
+            margin-bottom: 8px;
+            padding-bottom: 5px;
+            border-bottom: 1px solid #f0f0f0;
+        }
+        .config-desc { font-size: 10pt; color: #666; line-height: 1.5; }
+
+        .document-footer {
+            margin-top: 40px;
+            padding-top: 15px;
+            border-top: 1px solid #ddd;
+            text-align: center;
+            font-size: 10pt;
+            color: #666;
+        }
+        .footer-info {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 8px;
+        }
+        .document-id { font-size: 9pt; color: #999; text-transform: uppercase; letter-spacing: .5px; }
+
+        .text-bold { font-weight: 600; }
+
+        @media screen and (max-width: 768px) {
+            body { padding: 10mm; }
+            .document-metadata { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="color-bar"></div>
+    <div class="page-number"></div>
+
+    <div class="document-header">
+        <div class="client-identification">DOCUMENTAÇÃO TÉCNICA</div>
+        <h1 class="report-title">Relatório Técnico-Pedagógico</h1>
+        <div class="course-title">Curso: "Integração de Promotores Zaffari"</div>
+
+        <div class="document-metadata">
+            <div class="metadata-item">
+                <span class="metadata-label">Formato</span>
+                <span class="metadata-value"><span class="indicator indicator-blue">Web Responsivo</span></span>
+            </div>
+            <div class="metadata-item">
+                <span class="metadata-label">Estrutura</span>
+                <span class="metadata-value">Projeto estático HTML/CSS/JS</span>
+            </div>
+            <div class="metadata-item">
+                <span class="metadata-label">Páginas de Conteúdo</span>
+                <span class="metadata-value">11 páginas principais</span>
+            </div>
+            <div class="metadata-item">
+                <span class="metadata-label">Duração estimada</span>
+                <span class="metadata-value">1 hora</span>
+            </div>
+            <div class="metadata-item">
+                <span class="metadata-label">Idiomas Suportados</span>
+                <span class="metadata-value">PT, EN, ES, FR, HT</span>
+            </div>
+            <div class="metadata-item">
+                <span class="metadata-label">Público-alvo</span>
+                <span class="metadata-value">Promotores em integração operacional</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="specification-box" style="margin-top: 25px;">
+        <div class="specification-title">Objetivo do Curso</div>
+        <p style="margin-bottom: 0;">
+            Capacitar promotores para atuação segura e padronizada nas lojas, cobrindo normas de acesso, higiene em
+            perecíveis, ergonomia, movimentação de cargas, abastecimento PVPS e conduta profissional. O percurso combina
+            vídeos curtos, atividades práticas e uma simulação narrativa de tomada de decisão.
+        </p>
+    </div>
+
+    <h1>1. Arquitetura Pedagógica</h1>
+    <p>
+        O curso foi estruturado para acelerar a curva de aprendizagem no primeiro dia em loja, com foco em aplicação
+        imediata das regras operacionais e redução de erros críticos de segurança, qualidade e conduta.
+    </p>
+
+    <h2>1.1. Princípios Instrucionais</h2>
+    <ul>
+        <li><span class="text-bold">Aprendizagem contextual:</span> cada conteúdo é ancorado em situações reais de loja.</li>
+        <li><span class="text-bold">Progressão prática:</span> teoria breve seguida de atividade objetiva em cada etapa.</li>
+        <li><span class="text-bold">Feedback imediato:</span> respostas corretas/incorretas orientam ajuste de comportamento.</li>
+        <li><span class="text-bold">Transferência para o trabalho:</span> regras alinhadas às rotinas operacionais.</li>
+    </ul>
+
+    <h2>1.2. Metodologias Aplicadas</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Metodologia</th>
+                <th>Aplicação no Curso</th>
+                <th>Benefício</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><span class="text-bold">Microlearning</span></td>
+                <td>Páginas curtas com vídeos e prática em blocos pequenos</td>
+                <td>Maior retenção com menor fadiga</td>
+            </tr>
+            <tr>
+                <td><span class="text-bold">Aprendizagem Ativa</span></td>
+                <td>Drag and drop, seleção sequencial, quizzes situacionais</td>
+                <td>Engajamento e tomada de decisão</td>
+            </tr>
+            <tr>
+                <td><span class="text-bold">Simulação Narrativa</span></td>
+                <td>Módulo final com cenários encadeados e impacto por resposta</td>
+                <td>Treino de julgamento operacional</td>
+            </tr>
+            <tr>
+                <td><span class="text-bold">Avaliação Formativa</span></td>
+                <td>Correção por etapa com bloqueio de avanço sem acerto</td>
+                <td>Consolidação antes da progressão</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <h2>1.3. Estrutura Curricular</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Página</th>
+                <th>Tema</th>
+                <th>Atividade principal</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr><td>1</td><td>Boas-vindas</td><td>Abertura e preparação da jornada</td></tr>
+            <tr><td>2</td><td>Acesso e apresentação pessoal</td><td>Checklist de conformidade</td></tr>
+            <tr><td>3</td><td>Perecíveis</td><td>Drag and drop de itens permitidos/proibidos</td></tr>
+            <tr><td>4</td><td>Mapa de risco e EPI</td><td>Quiz objetivo</td></tr>
+            <tr><td>5</td><td>Ergonomia e peso</td><td>Seleção de caixas conforme limite</td></tr>
+            <tr><td>6</td><td>Elevador e transporte</td><td>Cartas de risco com revelação progressiva</td></tr>
+            <tr><td>7</td><td>Boas práticas e PVPS</td><td>Ordem correta de exposição</td></tr>
+            <tr><td>8</td><td>Conduta e convivência</td><td>Questionário situacional em 3 blocos</td></tr>
+            <tr><td>9</td><td>Resumo</td><td>Consolidação dos pilares</td></tr>
+            <tr><td>10</td><td>Simulação prática</td><td>Narrativa decisória com feedback</td></tr>
+            <tr><td>11</td><td>Encerramento</td><td>Conclusão da trilha</td></tr>
+        </tbody>
+    </table>
+
+    <h2>1.4. Processo de Edição de Vídeo e Recurso de Transcrição</h2>
+    <p>
+        Os vídeos do curso seguem um fluxo de edição orientado a microlearning e aplicação prática. O objetivo é manter
+        peças curtas, diretas e alinhadas às decisões exigidas nas atividades interativas de cada página.
+    </p>
+    <table>
+        <thead>
+            <tr>
+                <th>Etapa</th>
+                <th>Diretriz de produção</th>
+                <th>Resultado no curso</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><span class="text-bold">Roteirização</span></td>
+                <td>Foco em regras operacionais objetivas e linguagem de loja.</td>
+                <td>Conteúdo direto e de fácil retenção.</td>
+            </tr>
+            <tr>
+                <td><span class="text-bold">Edição</span></td>
+                <td>Blocos curtos, cortes limpos, ritmo constante e eliminação de redundâncias.</td>
+                <td>Maior engajamento e menor fadiga cognitiva.</td>
+            </tr>
+            <tr>
+                <td><span class="text-bold">Padronização visual</span></td>
+                <td>Consistência de identidade, nomenclatura e sequência pedagógica entre módulos.</td>
+                <td>Navegação previsível e experiência unificada.</td>
+            </tr>
+            <tr>
+                <td><span class="text-bold">Legendagem</span></td>
+                <td>Arquivo VTT por página e idioma, com revisão de termos críticos operacionais.</td>
+                <td>Acesso multilíngue e reforço de compreensão.</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <div class="specification-box">
+        <div class="specification-title">Recurso adicional: "Ver Transcrição"</div>
+        <p style="margin-bottom: 0;">
+            O modo <span class="text-bold">Ver Transcrição</span> complementa o vídeo com leitura textual sincronizada,
+            funcionando como apoio para revisão rápida, acessibilidade e reforço de aprendizado. Esse recurso também
+            facilita validação de conteúdo, ajustes terminológicos e manutenção contínua em múltiplos idiomas.
+        </p>
+    </div>
+
+    <div class="page-break"></div>
+
+    <h1>2. Design e Experiência do Usuário</h1>
+    <p>
+        A experiência visual prioriza legibilidade, clareza de ação e leitura rápida em ambiente corporativo. A
+        interface usa componentes consistentes (cards, botões, modais e feedback visual) para reduzir carga cognitiva.
+    </p>
+
+    <h2>2.1. Diretrizes de Interface</h2>
+    <div class="config-grid">
+        <div class="config-item">
+            <div class="config-title">Navegação sequencial</div>
+            <p class="config-desc">Fluxo por páginas com avanço controlado, evitando saltos indevidos de conteúdo.</p>
+        </div>
+        <div class="config-item">
+            <div class="config-title">Feedback de atividade</div>
+            <p class="config-desc">Mensagens claras de acerto/erro com orientação para ajuste imediato.</p>
+        </div>
+        <div class="config-item">
+            <div class="config-title">Ações de correção</div>
+            <p class="config-desc">Botões de recomeço e possibilidade de retornar itens para estado inicial nas atividades.</p>
+        </div>
+        <div class="config-item">
+            <div class="config-title">Consistência multilíngue</div>
+            <p class="config-desc">Mesma lógica de interação em PT, EN, ES, FR e HT.</p>
+        </div>
+    </div>
+
+    <h2>2.2. Acessibilidade e Inclusão</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Recurso</th>
+                <th>Implementação</th>
+                <th>Finalidade</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><span class="text-bold">Legendas por vídeo</span></td>
+                <td>Arquivos VTT por página e idioma</td>
+                <td>Acesso ao conteúdo com apoio textual</td>
+            </tr>
+            <tr>
+                <td><span class="text-bold">Leitura por voz (TTS)</span></td>
+                <td>Web Speech API com ajustes</td>
+                <td>Suporte a diferentes perfis de aprendizagem</td>
+            </tr>
+            <tr>
+                <td><span class="text-bold">Ajustes visuais</span></td>
+                <td>Contraste, tamanho de fonte, modo dislexia</td>
+                <td>Conforto visual e inclusão</td>
+            </tr>
+            <tr>
+                <td><span class="text-bold">VLibras</span></td>
+                <td>Widget integrado na interface</td>
+                <td>Ampliação de acessibilidade comunicacional</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <h1>3. Avaliação Prática (Simulação Narrativa)</h1>
+    <p>
+        A simulação da página 10 consolida o aprendizado em cenários encadeados de operação real. O usuário precisa
+        responder corretamente para avançar, recebendo feedback contextual e reforço das regras-chave.
+    </p>
+
+    <h2>3.1. Competências verificadas</h2>
+    <ul>
+        <li>Aplicação de padrões de segurança na movimentação de cargas.</li>
+        <li>Conformidade com práticas de qualidade em perecíveis.</li>
+        <li>Aderência às regras de conduta e convivência na loja.</li>
+        <li>Tomada de decisão sob contexto operacional realista.</li>
+    </ul>
+
+    <h2>3.2. Mecanismo de avaliação</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Elemento</th>
+                <th>Regra</th>
+                <th>Resultado pedagógico</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Escolha de resposta</td>
+                <td>Uma alternativa correta por cena</td>
+                <td>Foco no comportamento esperado</td>
+            </tr>
+            <tr>
+                <td>Tentativa</td>
+                <td>Erro permite nova tentativa sem avanço</td>
+                <td>Aprendizagem por correção</td>
+            </tr>
+            <tr>
+                <td>Feedback</td>
+                <td>Mensagem específica por alternativa</td>
+                <td>Entendimento do porquê da regra</td>
+            </tr>
+            <tr>
+                <td>Progressão</td>
+                <td>Somente após acerto</td>
+                <td>Garantia de domínio mínimo</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <div class="page-break"></div>
+
+    <h1>4. Arquitetura Técnica</h1>
+    <p>
+        O projeto foi desenvolvido em stack web nativa para reduzir dependências e facilitar manutenção em ambientes
+        corporativos com diferentes políticas de TI.
+    </p>
+
+    <h2>4.1. Stack e componentes</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Tecnologia</th>
+                <th>Uso no Projeto</th>
+                <th>Status</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr><td><span class="text-bold">HTML5</span></td><td>Estrutura das páginas por idioma</td><td><span class="indicator indicator-green">Ativo</span></td></tr>
+            <tr><td><span class="text-bold">CSS3</span></td><td>Layout, responsividade e estados visuais</td><td><span class="indicator indicator-green">Ativo</span></td></tr>
+            <tr><td><span class="text-bold">JavaScript (ES6+)</span></td><td>Lógica de progresso, quizzes e simulação</td><td><span class="indicator indicator-green">Ativo</span></td></tr>
+            <tr><td><span class="text-bold">VTT</span></td><td>Legendas multilíngues por vídeo</td><td><span class="indicator indicator-green">Ativo</span></td></tr>
+        </tbody>
+    </table>
+
+    <h2>4.2. Estrutura de arquivos (visão resumida)</h2>
+    <div class="file-structure">
+        <span class="directory">promotores/</span><br>
+        <span class="indent">├── <span class="file">index.html</span> <span class="comment"># Português (base)</span></span><br>
+        <span class="indent">├── <span class="file">index_en.html</span> <span class="comment"># Inglês</span></span><br>
+        <span class="indent">├── <span class="file">index_es.html</span> <span class="comment"># Espanhol</span></span><br>
+        <span class="indent">├── <span class="file">index_fr.html</span> <span class="comment"># Francês</span></span><br>
+        <span class="indent">├── <span class="file">index_ht.html</span> <span class="comment"># Haitiano</span></span><br>
+        <span class="indent">├── <span class="directory">scripts/</span></span><br>
+        <span class="indent-2">└── <span class="file">main.js</span> <span class="comment"># Núcleo das interações e simulação</span></span><br>
+        <span class="indent">├── <span class="directory">assets/css/</span></span><br>
+        <span class="indent-2">└── <span class="file">style.css</span> <span class="comment"># Estilo global e componentes</span></span><br>
+        <span class="indent">├── <span class="directory">assets/legendas/</span></span><br>
+        <span class="indent-2">└── <span class="file">pag1-8-[idioma].vtt</span> <span class="comment"># Legendas por módulo</span></span><br>
+        <span class="indent">└── <span class="directory">assets/videos/</span> <span class="comment"># Mídias por tema (1 a 8)</span></span><br>
+    </div>
+
+    <h2>4.3. Compatibilidade recomendada</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Navegador</th>
+                <th>Versão mínima recomendada</th>
+                <th>Status</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr><td>Google Chrome</td><td>100+</td><td><span class="indicator indicator-green">Recomendado</span></td></tr>
+            <tr><td>Microsoft Edge</td><td>100+</td><td><span class="indicator indicator-green">Recomendado</span></td></tr>
+            <tr><td>Mozilla Firefox</td><td>100+</td><td><span class="indicator indicator-green">Recomendado</span></td></tr>
+            <tr><td>Safari</td><td>15+</td><td><span class="indicator indicator-amber">Validar TTS</span></td></tr>
+        </tbody>
+    </table>
+
+    <h1>5. Publicação e Operação</h1>
+    <h2>5.1. Formas de execução</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Método</th>
+                <th>Descrição</th>
+                <th>Requisito</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><span class="text-bold">Servidor web</span></td>
+                <td>Hospedagem estática dos arquivos</td>
+                <td>Apache, Nginx ou equivalente</td>
+            </tr>
+            <tr>
+                <td><span class="text-bold">Execução local</span></td>
+                <td>Ambiente de teste para validação interna</td>
+                <td>Python 3+ (`python -m http.server`) ou Node (`npx serve .`)</td>
+            </tr>
+            <tr>
+                <td><span class="text-bold">Empacotamento LMS</span></td>
+                <td>Publicação em ambiente corporativo de aprendizagem</td>
+                <td>Pacote estruturado conforme política do LMS</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <h2>5.2. Documentação Técnica</h2>
+    <ul>
+        <li><span class="text-bold">README.md:</span> Instruções detalhadas de setup, estrutura do projeto e guia de contribuição.</li>
+        <li><span class="text-bold">LICENSE:</span> Termos de uso e direitos autorais do conteúdo e código.</li>
+        <li><span class="text-bold">CHANGELOG.md:</span> Histórico de mudanças e versionamento do projeto.</li>
+        <li><span class="text-bold">Relatório do Projeto (Auto-referência):</span> Este próprio documento, que atua como
+            "Documentação Viva", "Prova de Conceito" e "Guia de Manutenção".</li>
+    </ul>
+
+
+    <h1>6. Contato e Suporte</h1>
+    <p>Para dúvidas técnicas, manutenção ou evolução do curso:</p>
+    <table>
+        <thead>
+            <tr>
+                <th>Responsável</th>
+                <th>E-mail</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><span class="text-bold">Felipe Correa Bitencourt</span></td>
+                <td><a href="mailto:felipe.cb2511@gmail.com">felipe.cb2511@gmail.com</a></td>
+            </tr>
+            <tr>
+                <td><span class="text-bold">Eduarda Tessari Pereira</span></td>
+                <td><a href="mailto:dudatessari@gmail.com">dudatessari@gmail.com</a></td>
+            </tr>
+        </tbody>
+    </table>
+
+    <div class="document-footer">
+        <div class="footer-info">
+            <span>Relatório Técnico-Pedagógico &copy; 06 de Abril de 2026</span>
+            <span>Projeto Promotores</span>
+        </div>
+        <div class="document-id">ID: PROM-DOC-2026-REV01</div>
+    </div>
+</body>
+
+</html>
