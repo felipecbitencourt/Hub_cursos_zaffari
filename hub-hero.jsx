@@ -5,13 +5,13 @@ function Hero({ courses }) {
         <div>
           <div className="hero-eyebrow">
             <span className="dot">Z</span>
-            Catalogo de Treinamentos
+            Catálogo de Treinamentos
           </div>
           <h1>
-            Hub de <em>conteudos Zaffari</em>
+            Hub de <em>conteúdos Zaffari</em>
           </h1>
           <p className="lede">
-            Um hub unico para acesso rapido aos cursos, relatorios e historico de atualizacoes.
+            Um hub único para acesso rápido aos cursos, relatórios e histórico de atualizações.
           </p>
           <div className="hero-stats">
             <div className="hero-stat">
@@ -20,12 +20,12 @@ function Hero({ courses }) {
             </div>
             <div className="hero-stat">
               <div className="num">3</div>
-              <span className="lbl">Acoes por curso</span>
+              <span className="lbl">Ações por curso</span>
             </div>
           </div>
         </div>
 
-        <div className="hero-motion" aria-label="Animacao visual do catalogo">
+        <div className="hero-motion" aria-label="Animação visual do catálogo">
           <div className="hero-glow hero-glow-a" />
           <div className="hero-glow hero-glow-b" />
 

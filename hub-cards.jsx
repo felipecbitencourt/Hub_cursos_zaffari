@@ -10,10 +10,10 @@ function toHref(url) {
 }
 
 const CHANGELOG_STEPS = [
-  { key: "demanda", label: "Historico de Demanda" },
-  { key: "reunioes", label: "Reunioes" },
-  { key: "atualizacoes", label: "Atualizacoes" },
-  { key: "aprovacao", label: "Aprovacao Final" },
+  { key: "demanda", label: "Histórico de Demanda" },
+  { key: "reunioes", label: "Reuniões" },
+  { key: "atualizacoes", label: "Atualizações" },
+  { key: "aprovacao", label: "Aprovação Final" },
 ];
 
 function ChangelogModal({ course, onClose }) {
@@ -31,7 +31,7 @@ function ChangelogModal({ course, onClose }) {
       <div className="changelog-modal" onClick={(e) => e.stopPropagation()}>
         <div className="changelog-head">
           <div>
-            <p className="changelog-kicker">Historico do Produto</p>
+            <p className="changelog-kicker">Histórico do Produto</p>
             <h3>{course.title}</h3>
           </div>
           <button type="button" className="icon-btn" onClick={onClose} aria-label="Fechar changelog">X</button>
@@ -110,16 +110,16 @@ function CourseCard({ course, index, onOpenChangelog }) {
 function CatalogSection({ courses }) {
   const [query, setQuery] = React.useState("");
   const categories = React.useMemo(() => ["Todos", ...new Set(courses.map((c) => c.category))], [courses]);
-  const statuses = React.useMemo(() => ["Todos status", ...new Set(courses.map((c) => c.status).filter(Boolean))], [courses]);
+  const statuses = React.useMemo(() => ["Todos os status", ...new Set(courses.map((c) => c.status).filter(Boolean))], [courses]);
   const [activeCategory, setActiveCategory] = React.useState("Todos");
-  const [activeStatus, setActiveStatus] = React.useState("Todos status");
+  const [activeStatus, setActiveStatus] = React.useState("Todos os status");
   const [activeChangelogCourse, setActiveChangelogCourse] = React.useState(null);
 
   const filtered = React.useMemo(() => {
     const q = normalizeForSearch(query.trim());
     return courses.filter((course) => {
       const matchesCategory = activeCategory === "Todos" || course.category === activeCategory;
-      const matchesStatus = activeStatus === "Todos status" || course.status === activeStatus;
+      const matchesStatus = activeStatus === "Todos os status" || course.status === activeStatus;
       if (!q) return matchesCategory && matchesStatus;
       const hay = normalizeForSearch(`${course.title} ${course.description} ${course.category} ${course.status || ""}`);
       return matchesCategory && matchesStatus && hay.includes(q);
@@ -165,7 +165,7 @@ function CatalogSection({ courses }) {
               >
                 {status}
                 <span className="count">
-                  {status === "Todos status" ? courses.length : courses.filter((c) => c.status === status).length}
+                  {status === "Todos os status" ? courses.length : courses.filter((c) => c.status === status).length}
                 </span>
               </button>
             ))}
@@ -177,8 +177,8 @@ function CatalogSection({ courses }) {
       <section className="catalog">
         <div className="container">
           <div className="section-head">
-            <h2>Cursos Disponiveis</h2>
-            <p>Todos os cards seguem o mesmo padrao: capa ilustrativa, acesso, relatorio e changelog.</p>
+            <h2>Cursos Disponíveis</h2>
+            <p>Todos os cards seguem o mesmo padrão: capa ilustrativa, acesso, relatório e changelog.</p>
           </div>
           {filtered.length === 0 ? (
             <div className="empty">
