@@ -15,6 +15,12 @@ const COURSES = [
       reunioes: ["Reuniao inicial para definicao de escopo e publico-alvo."],
       atualizacoes: ["Ajuste de conteudos e revisao de atividades praticas."],
       aprovacao: ["Aprovado para ciclo atual."],
+      timeline: [
+        { date: "22/04/2026 10:27", type: "Demanda", colorClass: "type-demanda", title: "Projeto enviado em fase MVP para alinhamento de expectativas e coleta de direcionamentos." },
+        { date: "22/04/2026 10:27", type: "Atualização", colorClass: "type-atualizacao", title: "Envio do Aprender-PT com relatorio tecnico-pedagogico para validacao." },
+        { date: "22/04/2026 10:27", type: "Demanda", colorClass: "type-demanda", title: "Solicitacao de workshop com usuarios para apresentar a ferramenta e alinhar uso." },
+        { type: "Demanda", colorClass: "type-demanda", title: "Aguardando retorno consolidado para ciclo final de ajustes." },
+      ],
     },
   },
   {
@@ -33,6 +39,13 @@ const COURSES = [
       reunioes: ["Alinhamento com equipe de conteudo e operacao."],
       atualizacoes: ["Inclusao de novos recursos de traducao."],
       aprovacao: ["Aprovado com monitoramento continuo."],
+      timeline: [
+        { date: "08/04/2026 11:03", type: "Demanda", colorClass: "type-demanda", title: "Convite para reuniao do Hub de Linguagens e alinhamento de proximos passos." },
+        { date: "08/04/2026 11:45", type: "Demanda", colorClass: "type-demanda", title: "Reuniao confirmada e ajustada para sexta-feira as 9h." },
+        { date: "15/04/2026 17:24", type: "Atualização", colorClass: "type-atualizacao", title: "Envio do MVP do Hub de Traducoes para validacao inicial." },
+        { date: "22/04/2026 10:27", type: "Atualização", colorClass: "type-atualizacao", title: "Reenvio do Hub de Traducoes com relatorio e proposta de workshop." },
+        { type: "Demanda", colorClass: "type-demanda", title: "Aguardando feedback dos stakeholders para consolidacao da proxima versao." },
+      ],
     },
   },
   {
@@ -51,6 +64,17 @@ const COURSES = [
       reunioes: ["Reunioes com liderancas para validacao da trilha NR-17."],
       atualizacoes: ["Conteudo revisado para linguagem mais objetiva."],
       aprovacao: ["Entrega final aprovada."],
+      timeline: [
+        { date: "10/01/2026 10:34", type: "Demanda", colorClass: "type-demanda", title: "Cliente encaminha material base da NR-17 para desenvolvimento de curso voltado ao SAC e Recuperacao de Credito." },
+        { date: "10/01/2026 11:59", type: "Demanda", colorClass: "type-demanda", title: "Equipe confirma recebimento e solicita reenvio do anexo por falha no envio inicial." },
+        { date: "10/01/2026 12:26", type: "Demanda", colorClass: "type-demanda", title: "Cliente reenviou os anexos da NR-17 para continuidade da producao." },
+        { date: "26/01/2026 13:07", type: "Atualização", colorClass: "type-atualizacao", title: "Envio da versao do NR-17 para avaliacao da equipe cliente." },
+        { date: "26/01/2026 17:25", type: "Demanda", colorClass: "type-demanda", title: "Retorno positivo com observacoes pontuais de terminologia." },
+        { date: "27/02/2026 15:51", type: "Demanda", colorClass: "type-demanda", title: "Cliente encaminha PDF com observacoes e necessidades de ajuste do NR-17." },
+        { date: "13/03/2026 17:41", type: "Atualização", colorClass: "type-atualizacao", title: "Reenvio com atualizacoes finais para nova rodada de validacao." },
+        { date: "13/03/2026 17:41", type: "Entregue", colorClass: "type-entregue", title: "Ultimo envio registrado do curso NR-17 para os contratantes." },
+        { type: "Demanda", colorClass: "type-demanda", title: "Aprovacao final em andamento com area juridica, conforme ultimo alinhamento." },
+      ],
     },
   },
   {
@@ -69,10 +93,17 @@ const COURSES = [
       reunioes: ["Discussao de abordagem com equipe pedagogica."],
       atualizacoes: ["Atualizacao de cenarios e exemplos práticos."],
       aprovacao: ["Aprovado para rodada de atualizacao."],
+      timeline: [
+        { type: "Demanda", colorClass: "type-demanda", title: "Solicitacao para reforcar pensamento critico em informacoes digitais." },
+        { type: "Demanda", colorClass: "type-demanda", title: "Discussao de abordagem com equipe pedagogica." },
+        { type: "Atualização", colorClass: "type-atualizacao", title: "Atualizacao de cenarios e exemplos práticos." },
+        { type: "Demanda", colorClass: "type-demanda", title: "Aprovado para rodada de atualizacao (sem data registrada no chat consolidado)." },
+      ],
     },
   },
   {
     id: "sac",
+    code: "SACSAC05",
     title: "Por Dentro do SAC",
     category: "SAC",
     description: "Jornada de atendimento com foco em experiência do cliente, eficiência e qualidade de serviço.",
@@ -83,10 +114,21 @@ const COURSES = [
     accent: "var(--pop-coral)",
     status: "Entregue",
     changelog: {
-      demanda: ["Demanda de qualificacao para atendimento em SAC."],
+      demanda: ["Capa Por Dentro do SACSAC05.", "Por Dentro do SAC."],
       reunioes: ["Reunioes com operacao para mapear jornada de atendimento."],
-      atualizacoes: ["Ajuste final de roteiro e checkpoints de qualidade."],
-      aprovacao: ["Aprovacao final concluida."],
+      atualizacoes: ["Entregue.", "Jornada de atendimento com foco em experiência do cliente, eficiência e qualidade de serviço."],
+      aprovacao: ["Aprovacao final concluida.", "Acesso liberado para o curso."],
+      timeline: [
+        { date: "29/12/2025 12:30", type: "Atualização", colorClass: "type-atualizacao", title: 'Envio inicial do curso "Por Dentro do SAC" para a plataforma Transformação.' },
+        { date: "02/01/2026 14:23", type: "Atualização", colorClass: "type-atualizacao", title: "Reenvio do curso com correções de conclusão SCORM, progresso e leitura guiada." },
+        { date: "05/01/2026 14:03", type: "Demanda", colorClass: "type-demanda", title: "Cliente informa incompatibilidade de formato/pacote e solicita novos ajustes." },
+        { date: "06/01/2026 15:34", type: "Demanda", colorClass: "type-demanda", title: "Ajuste técnico da estrutura SCORM para compatibilidade com a plataforma." },
+        { date: "12/01/2026 17:29", type: "Atualização", colorClass: "type-atualizacao", title: "Novo envio com ajustes de leitura automática e acessibilidade." },
+        { date: "14/01/2026 15:48", type: "Demanda", colorClass: "type-demanda", title: "Retorno positivo preliminar com validação completa prevista na semana seguinte." },
+        { date: "30/01/2026 15:32", type: "Demanda", colorClass: "type-demanda", title: "Consolidação de ajustes finais para Por Dentro do SAC." },
+        { date: "05/02/2026 16:39", type: "Atualização", colorClass: "type-atualizacao", title: "Reenvio da versão atualizada para validação final e acesso." },
+        { date: "05/02/2026 16:39", type: "Entregue", colorClass: "type-entregue", title: "Ultimo envio registrado do curso Por Dentro do SAC para os contratantes." },
+      ],
     },
   },
   {
@@ -105,6 +147,13 @@ const COURSES = [
       reunioes: ["Alinhamento com lideranca de campo."],
       atualizacoes: ["Conteudo atualizado com novas diretrizes."],
       aprovacao: ["Aprovado para versao atual."],
+      timeline: [
+        { date: "07/04/2026 08:52", type: "Demanda", colorClass: "type-demanda", title: "Cliente envia devolutiva positiva do material Promotores e encaminha sugestoes de melhoria." },
+        { date: "16/04/2026 15:48", type: "Atualização", colorClass: "type-atualizacao", title: "Equipe envia versao atualizada e sinaliza limitacao tecnica sobre legendas por ausencia de arquivo bruto." },
+        { date: "22/04/2026 08:47", type: "Demanda", colorClass: "type-demanda", title: "Cliente solicita ajustes finais de texto, atividade e criterios da avaliacao no treinamento." },
+        { date: "22/04/2026 11:05", type: "Atualização", colorClass: "type-atualizacao", title: "Correcoes implementadas e nova versao publicada no link de acesso." },
+        { date: "22/04/2026 11:16", type: "Demanda", colorClass: "type-demanda", title: "Recebido retorno de confirmacao (\"Obrigada\") apos aplicacao dos ajustes." },
+      ],
     },
   },
   {
@@ -123,6 +172,10 @@ const COURSES = [
       reunioes: ["Reuniao de kickoff pendente."],
       atualizacoes: [],
       aprovacao: [],
+      timeline: [
+        { date: "27/02/2026 15:51", type: "Demanda", colorClass: "type-demanda", title: "Recebimento do roteiro do curso Contas a Pagar para avaliacao de abordagem." },
+        { type: "Demanda", colorClass: "type-demanda", title: "Reuniao de kickoff pendente para detalhar escopo e cronograma." },
+      ],
     },
   },
   {
@@ -141,6 +194,14 @@ const COURSES = [
       reunioes: ["Reunioes de alinhamento com SAC."],
       atualizacoes: ["Fluxos revisados e consolidados."],
       aprovacao: ["Aprovacao final registrada."],
+      timeline: [
+        { date: "23/01/2026 08:00", type: "Demanda", colorClass: "type-demanda", title: "Envio inicial do microlearning de Canais de Comunicacao para testes." },
+        { date: "30/01/2026 15:32", type: "Demanda", colorClass: "type-demanda", title: "Cliente envia observacoes de ajuste apos validacao interna." },
+        { date: "27/02/2026 15:51", type: "Demanda", colorClass: "type-demanda", title: "Direcionamento de conteudo e layout para a pagina 'Nosso Sistema'." },
+        { date: "03/03/2026 16:16", type: "Atualização", colorClass: "type-atualizacao", title: "Envio da versao atualizada conforme orientacoes recebidas." },
+        { date: "03/03/2026 16:16", type: "Entregue", colorClass: "type-entregue", title: "Ultimo envio registrado do curso Canais de Comunicacao para os contratantes." },
+        { type: "Demanda", colorClass: "type-demanda", title: "Aprovacao final registrada com ajustes pontuais residuais." },
+      ],
     },
   },
 ];
