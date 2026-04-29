@@ -205,7 +205,6 @@ const COURSES = [
         { date: "03/03/2026 16:16", type: "Atualização", colorClass: "type-atualizacao", title: "Envio da versao atualizada conforme orientacoes recebidas." },
         { date: "13/03/2026 17:41", type: "Atualização", colorClass: "type-atualizacao", title: "Envio da pasta ZIP atualizada do curso Canais de Comunicação para validação." },
         { date: "19/03/2026 16:02", type: "Entregue", colorClass: "type-entregue", title: "Cliente confirma que Canais de Comunicação contemplou os ajustes e está validado." },
-        { date: "03/03/2026 16:16", type: "Entregue", colorClass: "type-entregue", title: "Ultimo envio registrado do curso Canais de Comunicacao para os contratantes." },
       ],
     },
   },
