@@ -9,6 +9,15 @@ function toHref(url) {
   return encodeURI(url);
 }
 
+const CATEGORY_COLOR_CLASS = {
+  Idiomas: "category-idiomas",
+  SAC: "category-sac",
+  Prateleira: "category-prateleira",
+  Operacional: "category-operacional",
+  Financeiro: "category-financeiro",
+  Acessibilidade: "category-acessibilidade",
+};
+
 function parseDateTimeBr(value) {
   if (!value || typeof value !== "string") return null;
   const match = value.match(/^(\d{2})\/(\d{2})\/(\d{4})(?:\s+(\d{2}):(\d{2}))?$/);
@@ -49,7 +58,24 @@ const CHANGELOG_LEGEND = [
 
 function getTimelineEntries(course) {
   const timeline = Array.isArray(course?.changelog?.timeline) ? course.changelog.timeline : null;
-  if (timeline && timeline.length) return timeline;
+  if (timeline && timeline.length) {
+    const normalized = [...timeline];
+    if (course?.status === "Entregue") {
+      let latestIdx = -1;
+      let latestTime = Number.NEGATIVE_INFINITY;
+      normalized.forEach((entry, idx) => {
+        const parsed = parseDateTimeBr(entry?.date);
+        if (parsed && parsed.getTime() > latestTime) {
+          latestTime = parsed.getTime();
+          latestIdx = idx;
+        }
+      });
+      if (latestIdx >= 0) {
+        normalized[latestIdx] = { ...normalized[latestIdx], type: "Entregue", colorClass: "type-entregue" };
+      }
+    }
+    return normalized;
+  }
 
   const changelog = course?.changelog || {};
   const orderedKeys = ["demanda", "reunioes", "atualizacoes", "aprovacao"];
@@ -66,6 +92,11 @@ function getTimelineEntries(course) {
     });
   });
 
+  if (course?.status === "Entregue" && entries.length) {
+    return entries.map((entry, idx) => (
+      idx === entries.length - 1 ? { ...entry, type: "Entregue", colorClass: "type-entregue" } : entry
+    ));
+  }
   return entries;
 }
 
@@ -124,8 +155,9 @@ function ChangelogModal({ course, onClose }) {
 function CourseCard({ course, index, onOpenChangelog }) {
   const hasAccess = Boolean(course.accessUrl);
   const hasReport = Boolean(course.reportUrl);
+  const categoryClass = CATEGORY_COLOR_CLASS[course.category] || "";
   return (
-    <article className="course-card" style={{ "--card-pop": course.accent, animationDelay: `${index * 70}ms` }}>
+    <article className={`course-card ${categoryClass}`} style={{ animationDelay: `${index * 70}ms` }}>
       <div className="course-cover">
         {course.cover ? (
           <img src={course.cover} alt={`Capa ${course.title}`} />
@@ -134,7 +166,7 @@ function CourseCard({ course, index, onOpenChangelog }) {
             <span>Placeholder</span>
           </div>
         )}
-        <span className="course-badge">{course.category}</span>
+        <span className={`course-badge ${categoryClass}`}>{course.category}</span>
         <span className="course-index">{String(index + 1).padStart(2, "0")}</span>
       </div>
       <div className="course-body">
@@ -170,6 +202,9 @@ function CourseCard({ course, index, onOpenChangelog }) {
 }
 
 function CalendarSection({ courses }) {
+  const [activeMonth, setActiveMonth] = React.useState("todos");
+  const [activeAction, setActiveAction] = React.useState("todas");
+
   const entries = React.useMemo(() => {
     const allEntries = courses.flatMap((course) =>
       getTimelineEntries(course).map((entry, idx) => {
@@ -189,8 +224,14 @@ function CalendarSection({ courses }) {
   }, [courses]);
 
   const grouped = React.useMemo(() => {
+    const filteredEntries = entries.filter((entry) => {
+      const monthOk = activeMonth === "todos" || entry.monthKey === activeMonth;
+      const actionOk = activeAction === "todas" || normalizeForSearch(entry.type) === activeAction;
+      return monthOk && actionOk;
+    });
+
     const map = new Map();
-    entries.forEach((entry) => {
+    filteredEntries.forEach((entry) => {
       if (!map.has(entry.monthKey)) map.set(entry.monthKey, { key: entry.monthKey, label: entry.monthLabel, items: [] });
       map.get(entry.monthKey).items.push(entry);
     });
@@ -199,6 +240,24 @@ function CalendarSection({ courses }) {
       if (b.key === "sem-data") return -1;
       return b.key.localeCompare(a.key);
     });
+  }, [entries, activeMonth, activeAction]);
+
+  const monthOptions = React.useMemo(() => {
+    const map = new Map();
+    entries.forEach((entry) => {
+      if (!map.has(entry.monthKey)) map.set(entry.monthKey, entry.monthLabel);
+    });
+    return Array.from(map.entries())
+      .sort((a, b) => {
+        if (a[0] === "sem-data") return 1;
+        if (b[0] === "sem-data") return -1;
+        return b[0].localeCompare(a[0]);
+      });
+  }, [entries]);
+
+  const actionOptions = React.useMemo(() => {
+    const set = new Set(entries.map((entry) => normalizeForSearch(entry.type)));
+    return CHANGELOG_LEGEND.filter((item) => set.has(normalizeForSearch(item.label)));
   }, [entries]);
 
   return (
@@ -208,10 +267,35 @@ function CalendarSection({ courses }) {
           <h2>Calendário de Ações</h2>
           <p>Todas as ações registradas no changelog, do mais recente para o mais antigo.</p>
         </div>
+        <div className="calendar-filters">
+          <label>
+            Mês
+            <select value={activeMonth} onChange={(e) => setActiveMonth(e.target.value)}>
+              <option value="todos">Todos</option>
+              {monthOptions.map(([value, label]) => (
+                <option key={value} value={value}>{label}</option>
+              ))}
+            </select>
+          </label>
+          <label>
+            Ação
+            <select value={activeAction} onChange={(e) => setActiveAction(e.target.value)}>
+              <option value="todas">Todas</option>
+              {actionOptions.map((option) => (
+                <option key={option.key} value={normalizeForSearch(option.label)}>{option.label}</option>
+              ))}
+            </select>
+          </label>
+        </div>
         {entries.length === 0 ? (
           <div className="empty">
             <h3>Nenhuma ação registrada</h3>
             <p>Adicione eventos nos changelogs para preencher o calendário.</p>
+          </div>
+        ) : grouped.length === 0 ? (
+          <div className="empty">
+            <h3>Nenhum resultado com filtros</h3>
+            <p>Altere o mês ou tipo de ação para visualizar eventos.</p>
           </div>
         ) : (
           <div className="calendar-groups">
@@ -300,7 +384,7 @@ function CatalogSection({ courses }) {
                     <button
                       key={category}
                       type="button"
-                      className={`tag ${activeCategory === category ? "active" : ""}`}
+                      className={`tag ${CATEGORY_COLOR_CLASS[category] || ""} ${activeCategory === category ? "active" : ""}`}
                       onClick={() => setActiveCategory(category)}
                     >
                       {category}
